@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>初识语义分割 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="语义分割基础知识在计算机视觉的语义感知部分主要分为图像分类、目标检测、语义分割、实例分割等。 语义分割是一种视觉场景理解任务，它从像素水平上理解、识别图片内容，然后根据语义信息进行图像分割；它是一种稠密标签，目的是预测输入图片中每一个像素的类别标签。 现有语义分割技术会出现分割图像边缘粗糙的现象，这在应用领域造成了一定的影响，尤其在对分割精确度要求较高的医学领域；而且在语义分割模型训练的过程中主要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识语义分割">
+<meta property="og:url" content="http://yoursite.com/2020/03/05/%E5%88%9D%E8%AF%86%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="语义分割基础知识在计算机视觉的语义感知部分主要分为图像分类、目标检测、语义分割、实例分割等。 语义分割是一种视觉场景理解任务，它从像素水平上理解、识别图片内容，然后根据语义信息进行图像分割；它是一种稠密标签，目的是预测输入图片中每一个像素的类别标签。 现有语义分割技术会出现分割图像边缘粗糙的现象，这在应用领域造成了一定的影响，尤其在对分割精确度要求较高的医学领域；而且在语义分割模型训练的过程中主要">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200216121838301.png">
+<meta property="article:published_time" content="2020-03-05T04:55:30.926Z">
+<meta property="article:modified_time" content="2020-03-05T04:55:37.559Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200216121838301.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-初识语义分割" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/05/%E5%88%9D%E8%AF%86%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/" class="article-date">
+  <time datetime="2020-03-05T04:55:30.926Z" itemprop="datePublished">2020-03-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      初识语义分割
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="语义分割基础知识"><a href="#语义分割基础知识" class="headerlink" title="语义分割基础知识"></a>语义分割基础知识</h1><p>在计算机视觉的语义感知部分主要分为图像分类、目标检测、语义分割、实例分割等。</p>
+<p>语义分割是一种视觉场景理解任务，它从像素水平上理解、识别图片内容，然后根据语义信息进行图像分割；它是一种稠密标签，目的是预测输入图片中每一个像素的类别标签。</p>
+<p>现有语义分割技术会出现分割图像边缘粗糙的现象，这在应用领域造成了一定的影响，尤其在对分割精确度要求较高的医学领域；而且在语义分割模型训练的过程中主要依赖人工标注的数据集样本，耗费较多的人力物力。因此，如何对分割图像边缘粗糙问题进行处理，提高分割精确度；如何降低语义分割模型训练对人工标注的数据集样本的依赖程度，提升网络的泛化能力，对语义分割技术的广泛应用具有非常重要的现实意义。</p>
+<h1 id="图像语义分割综述"><a href="#图像语义分割综述" class="headerlink" title="图像语义分割综述"></a>图像语义分割综述</h1><p>转载自<a href="https://zhuanlan.zhihu.com/p/37801090" target="_blank" rel="noopener">这儿</a></p>
+<h2 id="什么是语义分割"><a href="#什么是语义分割" class="headerlink" title="什么是语义分割"></a>什么是语义分割</h2><p>语义分割是在像素级别上的分类，属于同一类的像素都要被归为一类，因此语义分割是从像素级别来理解图像的。比如说如下的照片，属于人的像素都要分成一类，属于摩托车的像素也要分成一类，除此之外还有背景像素也被分为一类。注意语义分割不同于实例分割，举例来说，如果一张照片中有多个人，对于语义分割来说，只要将所由人的像素都归为一类，但是实例分割还要将不同人的像素归为不同的类。也就是说实例分割比语义分割更进一步。</p>
+<h2 id="语义分割的思路"><a href="#语义分割的思路" class="headerlink" title="语义分割的思路"></a>语义分割的思路</h2><h3 id="传统方法"><a href="#传统方法" class="headerlink" title="传统方法"></a>传统方法</h3><p>在深度学习方法流行之前，TextonForest和基于随机森林分类器等语义分割方法是用得比较多的方法。不过在深度卷积网络流行之后，深度学习方法比传统方法提升了很多，所以这里就不详细讲传统方法了。</p>
+<h3 id="深度学习方法"><a href="#深度学习方法" class="headerlink" title="深度学习方法"></a>深度学习方法</h3><p>深度学习方法在语义分割上得到了巨大成功，深度学习方法解决语义分割问题可以概括为几种思路。下面进行详细介绍。</p>
+<p>1.Patch classification<br>最初的深度学习方法应用于图像分割就是Patch classification。Patch classification方法，顾名思义，图像是切成块喂给深度模型的，然后对像素进行分类。使用图像块的主要原因是全连接层需要固定大小的图像。</p>
+<p>2.全卷积方法<br>2014年，全卷积网络（FCN）横空出世，FCN将网络全连接层用卷积取代，因此使任意图像大小的输入都变成可能，而且速度比Patch classification方法快很多。</p>
+<p>尽管移除了全连接层，但是CNN模型用于语义分割还存在一个问题，就是下采样操作（比如，pooling）。pooling操作可以扩大感受野因而能够很好地整合上下文信息（context中文称为语境或者上下文，通俗的理解就是综合了更多的信息来进行决策），对high-level的任务（比如分类），这是很有效的。但同时，由于pooling下采样操作，使得分辨率降低，因此削弱了位置信息，而语义分割中需要score map和原图对齐，因此需要丰富的位置信息。</p>
+<p>3.encoder-decoder架构<br>encoder-decoder是基于FCN的架构。encoder由于pooling逐渐减少空间维度，而decoder逐渐恢复空间维度和细节信息。通常从encoder到decoder还有shortcut connetction（捷径连接，也就是跨层连接）。其中U-net就是这种架构很流行的一种，如下图：<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216121702929.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216121702929.png#pic_center</a> =500x300)<br>4.空洞卷积<br>dilated/atrous （空洞卷积）架构，这种结构代替了pooling，一方面它可以保持空间分辨率，另外一方面它由于可以扩大感受野因而可以很好地整合上下文信息。如下图：<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216121135445.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216121135445.png#pic_center</a> =500x300)<br>5.条件随机场<br>除了以上思路，还有一种对分割结果进行后处理的方法，那就是条件随机场(Conditional Random Fields (CRFs))后处理用来改善分割效果。DeepLab系列文章基本都采用这种后处理方法，可以较好地改善分割结果，如下图：<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216121319384.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216121319384.png#pic_center</a> =500x300)</p>
+<h2 id="深度学习语义分割方法"><a href="#深度学习语义分割方法" class="headerlink" title="深度学习语义分割方法"></a>深度学习语义分割方法</h2><p>现在的深度学习语义分割模型基本上都是基于FCN发展而来的，它是开山鼻祖，一张图概括FCN的延伸方法：<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216121544933.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216121544933.png#pic_center</a> =500x300)<br>各方法的详细信息<br><img src="https://img-blog.csdnimg.cn/20200216121838301.png" alt="在这里插入图片描述"></p>
+<h3 id="各方法的简要介绍"><a href="#各方法的简要介绍" class="headerlink" title="各方法的简要介绍"></a>各方法的简要介绍</h3><p>下面简单总结一些从FCN进行改进的几种架构，关于每种架构的详细解读请看专栏中其他文章。</p>
+<h4 id="1-FCN"><a href="#1-FCN" class="headerlink" title="1.FCN"></a>1.FCN</h4><blockquote>
+<p>Fully Convolutional Networks for Semantic Segmentation<br>Submitted on 14 Nov 2014</p>
+</blockquote>
+<p>主要贡献</p>
+<p>1.使端对端的卷积语义分割网络变得流行起来。<br>2.通过deconvolutional layers进行上采样。<br>3.通过skip connection改善了上采样的粗糙度。</p>
+<p>概要</p>
+<p>1.<strong>全卷积化(Fully Convolutional)</strong>：用于解决逐像素(pixel-wise)的预测问题。通过将基础网络(例如VGG)最后面几个全连接层换成卷积层，可实现任意大小的图像输入，并且输出图像大小与输入相对应；<br>2.<strong>反卷积(deconvolution)</strong> ：上采样操作，用于恢复图片尺寸，方便后续进行逐像素预测;<br>3.<strong>跳跃结构(skip architecture)</strong>：用于融合高低层特征信息。通过跨层连接的结构，结合了网络浅层的细(fine-grain)粒度信息信息以及深层的粗糙(coarse)信息，以实现精准的分割任务。</p>
+<p>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216123101449.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216123101449.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =500x300)<br>FCN是基于深度学习的语义分割的开山之作，尽管现在很多方法都超越了FCN，但它的思想仍然有很重要的意义。</p>
+<h4 id="2-Segnet"><a href="#2-Segnet" class="headerlink" title="2. Segnet"></a>2. Segnet</h4><blockquote>
+<p>SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation<br>Submitted on 2 Nov 2015</p>
+</blockquote>
+<p>主要贡献</p>
+<p>使用Maxpooling indices来增强位置信息。</p>
+<p>简要概述</p>
+<p>FCN的upconvolution层+shortcut connections产生的分割图比较粗糙，因此SegNet增加了更多的shortcut connections。不过，SegNet并不是直接将encoder的特征进行直接复制，而是对maxpooling中的indices进行复制，这使得SegNet的效率更高。</p>
+<p>maxpooling 的indices复制原理如下：<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216220438471.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216220438471.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =300x)<br>FCN和SegNet都是encoder-decoder架构。<br>SegNet的benchmark表现太差了，不建议用这个网络。</p>
+<h4 id="3-Dilated-convolution"><a href="#3-Dilated-convolution" class="headerlink" title="3. Dilated convolution"></a>3. Dilated convolution</h4><p>论文信息</p>
+<blockquote>
+<p>Multi-Scale Context Aggregation by Dilated Convolutions<br>Submitted on 23 Nov 2015</p>
+</blockquote>
+<p>创新点</p>
+<p>1.使用空洞卷积用来进行稠密预测（dense prediction）。<br>2.提出上下文模块（context module），使用空洞卷积（Dilated Convolutions）来进行多尺度信息的的整合。</p>
+<p>简要解释</p>
+<p>pooling操作可以增大感受野，对于图像分类任务来说这有很大好处，但由于pooling操作降低了分辨率，这对语义分割来说很不利。因此作者提出一种叫做dilated convolution的操作来解决这个问题。dilated卷积(在deeplab中称为atrous卷积)。可以很好地提升感受野的同时可以保持空间分辨率。<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216220838429.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216220838429.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =500x)<br>网络架构有两种，一种是前端网络，另外一种是前端网络+上下文模块，分别介绍如下：</p>
+<p>将VGG网络的最后两个pooling层给拿掉了，之后的卷积层被dilated 卷积取代。并且在pool3和pool4之间空洞卷积的空洞率=2，pool4之后的空洞卷积的空洞率=4。作者将这种架构称为前端（front-end）。</p>
+<p>除了前端网络之外，作者还设计了一种叫做上下文模块（context module）的架构，加在前端网络之后。上下文模块中级联了多种不同空洞率的空洞卷积，使得多尺度的上下文信息可以得到整合，从而改善前端网络预测的效果。需要注意的是前端网络和上下文模块是分开训练的，因为作者在实验中发现，如果是联合在一起进行端对端的训练并不能改善性能。</p>
+<p>需要特别注意的是，网络输出的分割图并不是和原始图像大小一样的，而是其1/8，需要对输出的分割图进行线性插值才能得到最终的分割结果。这种做法也是很多其他的方法都使用的。</p>
+<h4 id="4-DeepLab-v1-v2"><a href="#4-DeepLab-v1-v2" class="headerlink" title="4. DeepLab(v1,v2)"></a>4. DeepLab(v1,v2)</h4><p><strong>论文信息</strong></p>
+<blockquote>
+<p>v1: Semantic Image Segmentation with Deep Convolutional Nets and Fully Connected CRFs<br>Submitted on 22 Dec 2014<br>v2 : DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs<br>Submitted on 2 Jun 2016</p>
+</blockquote>
+<p><strong>主要贡献</strong></p>
+<p>1.使用atrous卷积，也就是后来的空洞卷积，扩大感受野，保持分辨率。<br>2.提出了atrous spatial pyramid pooling (ASPP)，整合多尺度信息。<br>3.使用全连接条件随机场（fully connected CRF)进行后处理，改善分割结果。</p>
+<p><strong>简要概述</strong></p>
+<p>1.空洞卷积可以在不增加参数的情况下增加感受野。<br>2.通过两种方式来进行多尺度的处理：A.将原始图像的多种尺度喂给网络进行训练。B.通过平行的不同空洞率的空洞卷积层来获得。<br>3.通过全连接条件随机场来进行后处理，以改善分割结果。<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216221235418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216221235418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =700x)</p>
+<h4 id="5-RefineNet"><a href="#5-RefineNet" class="headerlink" title="5.RefineNet"></a>5.RefineNet</h4><p><strong>论文信息</strong></p>
+<blockquote>
+<p>RefineNet: Multi-Path Refinement Networks for High-Resolution Semantic Segmentation<br>Submitted on 20 Nov 2016</p>
+</blockquote>
+<p><strong>主要贡献</strong></p>
+<p>精心设计了encoder-decoder架构中的decoder部分，使得性能提升。<br>整个网络的设计都遵循residual connections，网络表达能力更强，梯度更容易反向传播。</p>
+<p><strong>简要概述</strong></p>
+<p>作者提出空洞卷积方法应用于语义分割也是有缺点的，包括：</p>
+<p>因为使用了大分辨率的feature map，因此计算代价大，并且需要大量的内存。对于这个问题，DeepLab的做法是只预测原始输入的1／8。<br>本文提出使用encoder-decoder架构。encoder部分是RESNET-101。decoder具有RefineNet blocks，它将此前的RefineNet blocks的低分辨率特征和encoder部分高分辨率特征进行concatenate/fuse。<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216221557410.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216221557410.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =700x)<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216221623130.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216221623130.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =700x)</p>
+<h4 id="6-PSPNet"><a href="#6-PSPNet" class="headerlink" title="6. PSPNet"></a>6. PSPNet</h4><p>论文信息</p>
+<blockquote>
+<p>Pyramid Scene Parsing Network<br>Submitted on 4 Dec 2016</p>
+</blockquote>
+<p><strong>主要贡献</strong></p>
+<p>使用pyramid pooling整合context。<br>使用auxiliary loss。</p>
+<p><strong>概要</strong></p>
+<p>骨架网络使用Resnet，并在此基础上加上pyramid pooling module。该模块用到了很多kernel大小不一的pooling 。将pooling的结果再上采样，经过concatenate进行融合。<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216221725398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216221725398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =700x)<br>在RESNET的第四阶段（即输入到金字塔池模块）之后，应用auxiliary loss。这种方法在别的地方也被称为intermediate supervision。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/05/%E5%88%9D%E8%AF%86%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/" data-id="ck7zle4ex0006zkti2x3qb9eo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/05/%E7%90%86%E8%A7%A3%E4%B8%8A%E9%87%87%E6%A0%B7%E3%80%81%E4%B8%8B%E9%87%87%E6%A0%B7%E3%80%81%E6%B1%A0%E5%8C%96/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          理解上采样、下采样、池化
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/05/%E3%80%8A%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2%E3%80%8B%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">《视觉SLAM十四讲》笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/20/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/08/git%E5%91%BD%E4%BB%A4%E9%9B%86%E5%90%88/">git命令集合</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E4%B8%80%EF%BC%88%E6%AD%A6%E6%B1%89%E5%8A%A0%E6%B2%B9%E3%80%81%E4%B8%AD%E5%9B%BD%E5%8A%A0%E6%B2%B9%E3%80%81%E4%B8%8D%E5%A5%BD%E7%9A%84%E4%BA%8B%E5%BF%85%E5%B0%86%E8%BF%87%E5%8E%BB%EF%BC%89/">论文阅读一（武汉加油、中国加油、不好的事必将过去）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/05/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">《机器学习》读书笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/05/%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%90%86%E8%A7%A3/">卷积的理解</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>论文阅读一（武汉加油、中国加油、不好的事必将过去） | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、MID-Fusion: Octree-based Object-Level Multi-Instance Dynamic SLAM主要贡献1）第一个使用体积表示法的RGB-D多实例动态SLAM系统；2）一种更鲁棒的跟踪方法，利用测量不确定性加权并重新设置参数以用于对象跟踪；3）一个集成了几何信息、光度信息和语义信息的分割方法；4）将语义分布和前景对象概率融合到基于八叉树的物体模型中。 A.系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读一（武汉加油、中国加油、不好的事必将过去）">
+<meta property="og:url" content="http://yoursite.com/2020/03/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E4%B8%80%EF%BC%88%E6%AD%A6%E6%B1%89%E5%8A%A0%E6%B2%B9%E3%80%81%E4%B8%AD%E5%9B%BD%E5%8A%A0%E6%B2%B9%E3%80%81%E4%B8%8D%E5%A5%BD%E7%9A%84%E4%BA%8B%E5%BF%85%E5%B0%86%E8%BF%87%E5%8E%BB%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、MID-Fusion: Octree-based Object-Level Multi-Instance Dynamic SLAM主要贡献1）第一个使用体积表示法的RGB-D多实例动态SLAM系统；2）一种更鲁棒的跟踪方法，利用测量不确定性加权并重新设置参数以用于对象跟踪；3）一个集成了几何信息、光度信息和语义信息的分割方法；4）将语义分布和前景对象概率融合到基于八叉树的物体模型中。 A.系统">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200206202339689.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200206211018509.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200207193054661.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200207200305427.png">
+<meta property="article:published_time" content="2020-03-05T04:56:24.107Z">
+<meta property="article:modified_time" content="2020-03-05T04:56:31.159Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200206202339689.png#pic_center">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-论文阅读一（武汉加油、中国加油、不好的事必将过去）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E4%B8%80%EF%BC%88%E6%AD%A6%E6%B1%89%E5%8A%A0%E6%B2%B9%E3%80%81%E4%B8%AD%E5%9B%BD%E5%8A%A0%E6%B2%B9%E3%80%81%E4%B8%8D%E5%A5%BD%E7%9A%84%E4%BA%8B%E5%BF%85%E5%B0%86%E8%BF%87%E5%8E%BB%EF%BC%89/" class="article-date">
+  <time datetime="2020-03-05T04:56:24.107Z" itemprop="datePublished">2020-03-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      论文阅读一（武汉加油、中国加油、不好的事必将过去）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、MID-Fusion-Octree-based-Object-Level-Multi-Instance-Dynamic-SLAM"><a href="#一、MID-Fusion-Octree-based-Object-Level-Multi-Instance-Dynamic-SLAM" class="headerlink" title="一、MID-Fusion: Octree-based Object-Level Multi-Instance Dynamic SLAM"></a>一、MID-Fusion: Octree-based Object-Level Multi-Instance Dynamic SLAM</h1><h2 id="主要贡献"><a href="#主要贡献" class="headerlink" title="主要贡献"></a>主要贡献</h2><p>1）第一个使用体积表示法的RGB-D多实例动态SLAM系统；<br>2）一种更鲁棒的跟踪方法，利用测量不确定性加权并重新设置参数以用于对象跟踪；<br>3）一个集成了几何信息、光度信息和语义信息的分割方法；<br>4）将语义分布和前景对象概率融合到基于八叉树的物体模型中。</p>
+<h2 id="A-系统概述"><a href="#A-系统概述" class="headerlink" title="A.系统概述"></a>A.系统概述</h2><p><img src="https://img-blog.csdnimg.cn/20200206202339689.png#pic_center" alt="在这里插入图片描述"><br>图2显示了我们提出的系统的流程。它由四个部分组成： <strong>segmentation, tracking, fusion and raycasting</strong>。每个输入的RGB-D图像都由Mask R-CNN处理以执行实例分割，然后进行几何边缘分割和计算运动残差以优化蒙版边界（第IV-D节）。对于tracking，我们首先根据不包括人类蒙版区域的所有顶点计算相机位姿（第IV-B节），然后从该位姿进行光线投射，以找出哪些物体在当前帧中是可见的。这也可以帮助将局部对象蒙版与现有对象模型相关联。我们评估每个对象的运动残差以确定其是否处于运动状态，然后追踪运动物体（第IV-C节）并根据静态世界（包括当前的静态对象）改进相机的位姿（第IV-B节）。使用相机和物体的估计位姿，将深度和颜色信息以及预测的语义和前景概率融合到物体模型中（第IV-E节）。 IV-F节介绍了可见物体的检测以及射线投射。</p>
+<h2 id="B-RGB-D-Camera-tracking"><a href="#B-RGB-D-Camera-tracking" class="headerlink" title="B.RGB-D Camera tracking"></a>B.RGB-D Camera tracking</h2><p>计算相机位姿分为两步<br>    1.根据除人类外的所有模型的顶点计算相机位姿。<br>    2.根据静态场景计算相机位姿。</p>
+<p>通过最小化密集的点到面的ICP残差eg和光度（RGB）残差ep来进行这两个步骤，这些残差由单独的测量不确定度wg和wp加权。<br><img src="https://img-blog.csdnimg.cn/20200206211018509.png#pic_center" alt="在这里插入图片描述"><br>在初始化相机位姿之后，我们进行光线投射以在视图中找到可见的物体。 为了找到运动的物体，我们需要按公式7重新计算RGB残差，然后在当前帧上对Etrack（TWCL）进行最优的评估，并设定一个阈值（个人理解：小于阈值的点为inlier）。 如果物体的蒙版中的inlier比率低于0.9，则我们认为该物体正在移动并按照IV-C节中描述优化其位姿。</p>
+<p>然后，通过使用相同的目标函数和优化策略仅根据静态物体来优化相机的位姿。</p>
+<h2 id="C-Object-pose-estimation"><a href="#C-Object-pose-estimation" class="headerlink" title="C.Object pose estimation"></a>C.Object pose estimation</h2><p>根据公式8和公式9重新最小化公式1，即可求得运动物体的位姿。</p>
+<h2 id="D-Combined-semantic-geometric-motion-segmentation"><a href="#D-Combined-semantic-geometric-motion-segmentation" class="headerlink" title="D.Combined semantic-geometric-motion segmentation"></a>D.Combined semantic-geometric-motion segmentation</h2><p>对于每个RGB-D帧，我们使用Mask R-CNN [16]进行实例分割，然后通过几何边缘优化来解决泄漏的Mask边界[14]。</p>
+<p>然后，我们通过光线投射将每个地图物体的实例蒙版渲染到当前帧。 </p>
+<p>通过计算 IoU 与渲染蒙版的交集，我们将从Mask R-CNN和几何优化生成的局部分割蒙版与现有物体模型相关联。</p>
+<p>在将分割蒙版与物体模型关联之后，我们将基于物体的运动残差进一步优化分割蒙版。根据公式10重新计算公式1，对于ICP和RGB残差过高的像素将被视为outlier，并在分割蒙版中滤除。</p>
+<h2 id="E-Object-level-fusion"><a href="#E-Object-level-fusion" class="headerlink" title="E.Object-level fusion"></a>E.Object-level fusion</h2><p>将深度、颜色、语义、前景概率信息集成到物体模型</p>
+<h2 id="F-Raycasting"><a href="#F-Raycasting" class="headerlink" title="F.Raycasting"></a>F.Raycasting</h2><p>光线投射方法是基于图像序列的直接体绘制算法。从图像的每一个像素，沿固定方向（通常是视线方向）发射一条光线，光线穿越整个图像序列，并在这个过程中，对图像序列进行采样获取颜色信息，同时依据光线吸收模型将颜色值进行累加，直至光线穿越整个图像序列，最后得到的颜色值就是渲染图像的颜色。</p>
+<h1 id="二、Improving-Visual-Localization-Accuracy-in-Dynamic-Environments-Based-on-Dynamic-Region-Removal"><a href="#二、Improving-Visual-Localization-Accuracy-in-Dynamic-Environments-Based-on-Dynamic-Region-Removal" class="headerlink" title="二、Improving Visual Localization Accuracy in Dynamic Environments Based on Dynamic Region Removal"></a>二、Improving Visual Localization Accuracy in Dynamic Environments Based on Dynamic Region Removal</h1><p>使用神经网络获得先验边界框，人为确定动态权重，权重低于0.5为静态区域。在静态区域中选择特征点，初步估算两帧之间的相对运动。根据得到的变换矩阵，将参考帧映射到当前帧。将当前帧划分网格，计算特征点对的距离，据此给各个网格分配动态权重，进而计算各个网格的动态概率。然后根据贝叶斯定理，更新动态概率。最后去掉动态区域，计算相机位姿。</p>
+<h1 id="三、DSOD-DSO-in-Dynamic-Environments"><a href="#三、DSOD-DSO-in-Dynamic-Environments" class="headerlink" title="三、DSOD: DSO in Dynamic Environments"></a>三、DSOD: DSO in Dynamic Environments</h1><p><a href="https://zhuanlan.zhihu.com/p/29177540" target="_blank" rel="noopener">DSO详解</a></p>
+<p>本文将语义分割网络与深度预测网络相结合，以提供先验的深度和语义信息。</p>
+<p>我们提出的方法基于DSO。 因此，我们首先在III-A部分中简要描述DSO。 然后，我们提出的算法的整体方法在第III-B节中显示。<br>深度预测和语义分割分别在第III-C节和第III-D节中介绍。 最后，我们在III-E节中介绍了检查运动一致性和滤除动态点的方法</p>
+<h2 id="A、BASELINE-DSO-METHOD"><a href="#A、BASELINE-DSO-METHOD" class="headerlink" title="A、BASELINE DSO METHOD"></a>A、BASELINE DSO METHOD</h2><p>最小化光度误差：<br><img src="https://img-blog.csdnimg.cn/20200207193054661.png#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="B、DSOD-FRAMEWORK"><a href="#B、DSOD-FRAMEWORK" class="headerlink" title="B、DSOD FRAMEWORK"></a>B、DSOD FRAMEWORK</h2><p>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200207193525902.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200207193525902.png#pic_center</a> =3000x400)<br>我们提出的方法的总体框架如图1所示。我们的方法的输入由RGB图像序列组成，这些RGB图像序列被分解为红色，绿色和蓝色通道。 将光度校准应用于三个通道，然后将它们合并。 校正后的RGB图像是深度预测和分割网络的输入。原始的RGB图像也将转换为灰度图像，进行光度校准，然后用作动态点选择的输入。</p>
+<p>与DSO相反，在DSOD中引入了深度预测网络以提供初始深度并对点模式进行编码，以匹配投影的初始位置。 目的是加速深度的融合。网络在单目SLAM系统中在一定程度上补偿了尺度漂移。 此外，语义分割网络用于检查移动一致性，以减少动态环境中的错误。 最后，DSOD的输出是估计的位姿。</p>
+<h2 id="C、DEPTH-PREDICTION-NETWORK"><a href="#C、DEPTH-PREDICTION-NETWORK" class="headerlink" title="C、DEPTH PREDICTION NETWORK"></a>C、DEPTH PREDICTION NETWORK</h2><p>DSO仅从当前关键帧中选择像素。 因为它使用用不确定深度信息初始化的像素作为候选点，沿大范围沿对极线进行搜索时，可能会生成错误的投影对。 因此，我们将深度预测网络引入到我们的方法中。 我们使用无监督的单目深度估计来预测候选点的初始深度。 该估计通过单图像深度预测网络为候选点初始化过程提供了先验的深度信息。</p>
+<p>在沿对极线对候选点模式的代码和搜索点模式的代码进行XOR操作之后，最相似的投影就是我们的目标模式。 第二步是执行高斯–牛顿迭代，以优化投影对并更新候选点的深度。 最后，我们确定经过1次迭代后候选点的深度（相对于参考系）是否收敛。 如果没有，则不应将该候选点用于姿势估计</p>
+<h2 id="D、SEMANTIC-SEGMENTATION-NETWORK"><a href="#D、SEMANTIC-SEGMENTATION-NETWORK" class="headerlink" title="D、SEMANTIC SEGMENTATION NETWORK"></a>D、SEMANTIC SEGMENTATION NETWORK</h2><p>在本文中，语义信息被用来标记动态环境中的潜在动态点。</p>
+<p>为了提高分割的准确性，我们采用了可以提供像素级分割的分割网络。分割网络在COCO数据集上进行了训练[33]，它可以检测30类物体。其中，人，汽车，自行车，公共汽车和摩托车被定义为潜在的移动物体。</p>
+<h2 id="E、MOVEMENT-CONSISTENCY-CHECK"><a href="#E、MOVEMENT-CONSISTENCY-CHECK" class="headerlink" title="E、MOVEMENT CONSISTENCY CHECK"></a>E、MOVEMENT CONSISTENCY CHECK</h2><p>用RANSAC方法和合适的特征点，确定基础矩阵。<br>利用基础矩阵和参考帧的像素坐标计算极线。<br>计算当前帧的像素点到极线的距离，若大于阈值则为动态点。</p>
+<h1 id="四、DS-SLAM-A-Semantic-Visual-SLAM-towards-Dynamic-Environments"><a href="#四、DS-SLAM-A-Semantic-Visual-SLAM-towards-Dynamic-Environments" class="headerlink" title="四、DS-SLAM: A Semantic Visual SLAM towards Dynamic Environments"></a>四、DS-SLAM: A Semantic Visual SLAM towards Dynamic Environments</h1><p><a href="https://www.sohu.com/a/282110338_715754" target="_blank" rel="noopener">泡泡图灵智库解读</a><br><a href="https://blog.csdn.net/pikachu_777/article/details/86479564" target="_blank" rel="noopener">一个兄弟的解读</a></p>
+<h2 id="A、主要贡献"><a href="#A、主要贡献" class="headerlink" title="A、主要贡献"></a>A、主要贡献</h2><ul>
+<li>基于ORB-SLAM2 提出了动态环境中的完整语义SLAM系统（DS-SLAM），可以减少动态对象对位姿估计的影响。</li>
+<li>本文将一个实时语义分割网络放在一个独立的线程中，它将语义分割与移动一致性检查方法结合起来，过滤掉场景的动态部分，如走路的人。因此，在动态场景中，提升了定位模块和建图模块的稳定性和鲁棒性。</li>
+<li>DS-SLAM创建了一个单独的线程来构建稠密的语义3D八叉树地图。稠密的语义三维八叉树地图采用优势对数计分法滤除不稳定体素并更新这些体素的语义。<h2 id="B、概述"><a href="#B、概述" class="headerlink" title="B、概述"></a>B、概述</h2>图1 DS-SLAM概述图。 原始RGB图像用于同时进行语义分割和移动一致性检查。 然后删除异常值并估计位姿。 基于位姿，深度图像和语义分割结果，在独立线程中构建语义八叉树地图。<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200207195846535.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200207195846535.png#pic_center</a> =3000x400)<h2 id="C、框架"><a href="#C、框架" class="headerlink" title="C、框架"></a>C、框架</h2>图2 DS-SLAM的框架图。 局部地图线程和回环检测线程与ORB-SLAM2相同。 前者处理新的关键帧并执行局部BA以在相机姿势的周围实现最佳重建，而后者搜索回环并在检测到回环时执行图优化。<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200207200004739.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200207200004739.png#pic_center</a> =3000x400)<h2 id="D、semantic-segmentation"><a href="#D、semantic-segmentation" class="headerlink" title="D、semantic segmentation"></a>D、semantic segmentation</h2></li>
+<li>使用的网络结构是SegNet，在caffe上使用VOC训练，共20个类别。</li>
+<li>认为标签为行人的特征点最有可能是外点。<h2 id="E、Moving-Consistency-Check"><a href="#E、Moving-Consistency-Check" class="headerlink" title="E、Moving Consistency Check"></a>E、Moving Consistency Check</h2>通过光流法匹配特征点<br>若某对匹配的特征点接近边界，或其像素值与以它为中心的3x3区域内的像素值差别太大，就丢弃这对匹配。<br>用RANSAC方法和合适的特征点，确定基础矩阵。<br>利用基础矩阵和参考帧的像素坐标计算极线。<br>计算当前帧的像素点到极线的距离，若大于阈值则为动态点。<br><img src="https://img-blog.csdnimg.cn/20200207200305427.png" alt="在这里插入图片描述"><h2 id="F、动态点剔除"><a href="#F、动态点剔除" class="headerlink" title="F、动态点剔除"></a>F、动态点剔除</h2>语义分割结果无法判断物体是否是动态的。<br>运动一致性检查得到的点，不是这个物体包含的所有点，缺少精确轮廓<br>因此，将这两个步骤的结果结合起来，如果在一个物体的语义分割边界内，有足够数量的由移动一致性检测得到的移动点，那么这个物体的所有点都被视为动态的。然后剔除动态点进行位姿估计。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E4%B8%80%EF%BC%88%E6%AD%A6%E6%B1%89%E5%8A%A0%E6%B2%B9%E3%80%81%E4%B8%AD%E5%9B%BD%E5%8A%A0%E6%B2%B9%E3%80%81%E4%B8%8D%E5%A5%BD%E7%9A%84%E4%BA%8B%E5%BF%85%E5%B0%86%E8%BF%87%E5%8E%BB%EF%BC%89/" data-id="ck7zle4f5000azktiaxae5bq6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/08/git%E5%91%BD%E4%BB%A4%E9%9B%86%E5%90%88/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          git命令集合
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/05/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">《机器学习》读书笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/20/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/08/git%E5%91%BD%E4%BB%A4%E9%9B%86%E5%90%88/">git命令集合</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E4%B8%80%EF%BC%88%E6%AD%A6%E6%B1%89%E5%8A%A0%E6%B2%B9%E3%80%81%E4%B8%AD%E5%9B%BD%E5%8A%A0%E6%B2%B9%E3%80%81%E4%B8%8D%E5%A5%BD%E7%9A%84%E4%BA%8B%E5%BF%85%E5%B0%86%E8%BF%87%E5%8E%BB%EF%BC%89/">论文阅读一（武汉加油、中国加油、不好的事必将过去）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/05/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">《机器学习》读书笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/05/%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%90%86%E8%A7%A3/">卷积的理解</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

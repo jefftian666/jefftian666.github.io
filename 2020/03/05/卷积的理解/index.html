@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>卷积的理解 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="卷积的定义![在这里插入图片描述](https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200216134122403.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY&#x3D;,size_16,color">
+<meta property="og:type" content="article">
+<meta property="og:title" content="卷积的理解">
+<meta property="og:url" content="http://yoursite.com/2020/03/05/%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%90%86%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="卷积的定义![在这里插入图片描述](https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200216134122403.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY&#x3D;,size_16,color">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200216152628552.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200216152710682.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200216152928703.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200216153041546.png#pic_center">
+<meta property="article:published_time" content="2020-03-05T04:56:00.232Z">
+<meta property="article:modified_time" content="2020-03-05T04:56:01.238Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200216152628552.png#pic_center">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-卷积的理解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/05/%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%90%86%E8%A7%A3/" class="article-date">
+  <time datetime="2020-03-05T04:56:00.232Z" itemprop="datePublished">2020-03-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      卷积的理解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="卷积的定义"><a href="#卷积的定义" class="headerlink" title="卷积的定义"></a>卷积的定义</h1><p>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216134122403.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216134122403.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =500x300 )</p>
+<h1 id="卷积大白话"><a href="#卷积大白话" class="headerlink" title="卷积大白话"></a>卷积大白话</h1><p>卷积是一种运算，比加减乘除稍复杂的运算。<br>1.f(x)和g(y)是两个一元函数   // f(x)和g(y)分别是x和y的一个映射，这个映射是任意的。<br>2.以x为横轴，y为纵轴建立直角坐标系<br>3.定义：U(x,y) = f(x) * g(y)   //函数U不是x、y的函数，而是x、y映射的函数，即f(x)、g(y)的函数<br>4.求直线 y = -x + n 上的所有点，的U(x,y)，的和，这个和就叫f(x)和g(y)的卷积。<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216140942733.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216140942733.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =400x500)</p>
+<h1 id="矩阵卷积"><a href="#矩阵卷积" class="headerlink" title="矩阵卷积"></a>矩阵卷积</h1><p>向量的內积是<strong>向量变标量</strong>的一种运算方法<br>矩阵的內积是<strong>矩阵变向量</strong>的一种运算方法<br>矩阵的卷积是<strong>矩阵变标量</strong>的一种运算方法</p>
+<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><p>图像处理中，图像可以表示为矩阵形式，如我们在原始图像矩阵中，取出像素（u,v）处的3x3矩阵：<br><img src="https://img-blog.csdnimg.cn/20200216152628552.png#pic_center" alt="在这里插入图片描述"><br>对图像的处理函数（如平滑，或者边缘提取），也可以用一个矩阵来表示，如：<br><img src="https://img-blog.csdnimg.cn/20200216152710682.png#pic_center" alt="在这里插入图片描述"><br>那么矩阵 f 和 g 在（u，v）处的卷积 ( f * g )(u,v) 该如何计算呢？</p>
+<p><img src="https://img-blog.csdnimg.cn/20200216152928703.png#pic_center" alt="在这里插入图片描述"><br>即：<br>1.把矩阵 g 旋转180^o^<br>2.把矩阵 f 和矩阵 g 对应位置元素相乘，再相加。<br>3.得到一个标量。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200216153041546.png#pic_center" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/05/%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%90%86%E8%A7%A3/" data-id="ck7zle4ey0007zktiewwka3cw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/05/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          《机器学习》读书笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/05/%E7%90%86%E8%A7%A3%E4%B8%8A%E9%87%87%E6%A0%B7%E3%80%81%E4%B8%8B%E9%87%87%E6%A0%B7%E3%80%81%E6%B1%A0%E5%8C%96/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">理解上采样、下采样、池化</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/20/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/08/git%E5%91%BD%E4%BB%A4%E9%9B%86%E5%90%88/">git命令集合</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E4%B8%80%EF%BC%88%E6%AD%A6%E6%B1%89%E5%8A%A0%E6%B2%B9%E3%80%81%E4%B8%AD%E5%9B%BD%E5%8A%A0%E6%B2%B9%E3%80%81%E4%B8%8D%E5%A5%BD%E7%9A%84%E4%BA%8B%E5%BF%85%E5%B0%86%E8%BF%87%E5%8E%BB%EF%BC%89/">论文阅读一（武汉加油、中国加油、不好的事必将过去）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/05/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">《机器学习》读书笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/05/%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%90%86%E8%A7%A3/">卷积的理解</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

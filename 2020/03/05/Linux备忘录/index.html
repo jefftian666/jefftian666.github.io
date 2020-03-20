@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Linux备忘录 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Ubuntu备忘   指令 作用    Ctrl+h     或者 ls   -a 显示隐藏文件   ls -l name.file 查看文件详细信息   cp source.file target.file -r 复制文件和目录   mv file1 file2 改名字   mv flie1 ~&#x2F;a&#x2F;b&#x2F;file2 移动位置   file  target.file 查看文件类型   less n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux备忘录">
+<meta property="og:url" content="http://yoursite.com/2020/03/05/Linux%E5%A4%87%E5%BF%98%E5%BD%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Ubuntu备忘   指令 作用    Ctrl+h     或者 ls   -a 显示隐藏文件   ls -l name.file 查看文件详细信息   cp source.file target.file -r 复制文件和目录   mv file1 file2 改名字   mv flie1 ~&#x2F;a&#x2F;b&#x2F;file2 移动位置   file  target.file 查看文件类型   less n">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200303191501134.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200303191825194.png#pic_center">
+<meta property="article:published_time" content="2020-03-05T04:54:34.452Z">
+<meta property="article:modified_time" content="2020-03-05T05:03:17.940Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200303191501134.png#pic_center">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Linux备忘录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/05/Linux%E5%A4%87%E5%BF%98%E5%BD%95/" class="article-date">
+  <time datetime="2020-03-05T04:54:34.452Z" itemprop="datePublished">2020-03-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux备忘录
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Ubuntu备忘"><a href="#Ubuntu备忘" class="headerlink" title="Ubuntu备忘"></a>Ubuntu备忘</h1><table>
+<thead>
+<tr>
+<th align="center">指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Ctrl+h     或者 ls   -a</td>
+<td>显示隐藏文件</td>
+</tr>
+<tr>
+<td align="center">ls -l name.file</td>
+<td>查看文件详细信息</td>
+</tr>
+<tr>
+<td align="center">cp source.file target.file -r</td>
+<td>复制文件和目录</td>
+</tr>
+<tr>
+<td align="center">mv file1 file2</td>
+<td>改名字</td>
+</tr>
+<tr>
+<td align="center">mv flie1 ~/a/b/file2</td>
+<td>移动位置</td>
+</tr>
+<tr>
+<td align="center">file  target.file</td>
+<td>查看文件类型</td>
+</tr>
+<tr>
+<td align="center">less name.file</td>
+<td>以bash手册的形式查看name.file的内容，支持空格、PageDown翻下页，PageUp翻上页，Enter翻下行，q退出。</td>
+</tr>
+<tr>
+<td align="center">touch name.file</td>
+<td>若name.file不存在，则创建新文件；若name.file存在，则更新修改时间。</td>
+</tr>
+<tr>
+<td align="center">ps -ef</td>
+<td>显示所有进程的扩展信息。</td>
+</tr>
+<tr>
+<td align="center">top</td>
+<td>实时监控进程，按q退出,按d设置刷新间隔。</td>
+</tr>
+<tr>
+<td align="center">kill PID</td>
+<td>关闭第PID个进程，程度弱，可能被忽略。</td>
+</tr>
+<tr>
+<td align="center">killall name*</td>
+<td>强制关闭name开头的所有进程，谨慎使用，使用通配符*时可能关闭系统进程，损坏系统。</td>
+</tr>
+<tr>
+<td align="center">××××××××××</td>
+<td>××××××××××××</td>
+</tr>
+<tr>
+<td align="center">sudo dpkg -i package.deb</td>
+<td>安装软件包</td>
+</tr>
+<tr>
+<td align="center">sudo apt-get install -f</td>
+<td>修复有问题的软件包的依赖项</td>
+</tr>
+<tr>
+<td align="center">grep netease-cloud-music</td>
+<td>查看网易云音乐软件包是否已经安装</td>
+</tr>
+<tr>
+<td align="center">sudo apt-get remove netease-cloud-music</td>
+<td>卸载网易云音乐</td>
+</tr>
+<tr>
+<td align="center">dpkg -l</td>
+<td>显示所有安装了的软件包</td>
+</tr>
+<tr>
+<td align="center">×××××××××××××××</td>
+<td>×××××××××××××××××××</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li>点击图标实现最小化应用</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gsettings <span class="built_in">set</span> org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ launcher-minimize-window <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="vim备忘"><a href="#vim备忘" class="headerlink" title="vim备忘"></a>vim备忘</h1><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ctrl + f</td>
+<td>向下翻整页</td>
+</tr>
+<tr>
+<td>Ctrl + b</td>
+<td>向上翻整页</td>
+</tr>
+<tr>
+<td>-  <code>/etc/vim/vimrc</code>      vimrc是vim的配置文件</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="shell备忘"><a href="#shell备忘" class="headerlink" title="shell备忘"></a>shell备忘</h1><ul>
+<li>查看电脑有哪些shell</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/shells</span><br></pre></td></tr></table></figure>
+
+<h1 id="ros备忘"><a href="#ros备忘" class="headerlink" title="ros备忘"></a>ros备忘</h1><h2 id="环境变量配置"><a href="#环境变量配置" class="headerlink" title="环境变量配置"></a>环境变量配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"source /opt/ros/kinetic/setup.bash"</span> &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p>source这个单词，代表驱寻找的意思，后面一长串/opt/ros/kinetic/setup.bash就是ROS本身工作空间环境变量配置脚本文件的路径，&gt;&gt; ~/.bashrc表示将这个环境变量配置脚本写到终端配置文件.bashrc中。</p>
+<p>这里出现了一个新的文件，也就是终端配置文件.bashrc，这是我们打开的终端的一个配置文件，配置环境变量就相当于将工作空间的环境变量脚本，包括其路径，记录到这个终端配置文件.bashrc上。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"source /home/twb/catkin_ws/devel/setup.bash"</span> &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p>这个代码就是配置我们所创建的工作空间的环境变量，/home/twb/catkin_ws/devel/setup.bash这个是路径。<br>.bashrc中增加内容如下<br><img src="https://img-blog.csdnimg.cn/20200303191501134.png#pic_center" alt="在这里插入图片描述"><br>查看一下现在ROS内部的环境变量有哪些</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$ROS_PACKAGE_PATH</span></span><br></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20200303191825194.png#pic_center" alt="在这里插入图片描述"><br>冒号前面是我自己创建的工作空间的路径，那个/src文件夹是专门存放源代码和功能包的。冒号后面是ROS本身工作空间下源代码和软件包所存放的文件夹的路径。</p>
+<h1 id="Python备忘"><a href="#Python备忘" class="headerlink" title="Python备忘"></a>Python备忘</h1><ul>
+<li>安装 anaconda 后Linux的终端界面前部出现（base）字样</li>
+</ul>
+<p>1.打开一个终端 ，输入命令：vim ～/.bashrc<br>2.在 .bashrc文件最后面添加命令：conda deactivate</p>
+<p>再重新打开终端即可消除base字样</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/05/Linux%E5%A4%87%E5%BF%98%E5%BD%95/" data-id="ck7zle4ec0000zktib4w4d48k" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/05/%E3%80%8ADeepLearning%20with%20Python%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          《DeepLearning with Python》读书笔记（一）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/05/Python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python基础知识学习</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/20/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/08/git%E5%91%BD%E4%BB%A4%E9%9B%86%E5%90%88/">git命令集合</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E4%B8%80%EF%BC%88%E6%AD%A6%E6%B1%89%E5%8A%A0%E6%B2%B9%E3%80%81%E4%B8%AD%E5%9B%BD%E5%8A%A0%E6%B2%B9%E3%80%81%E4%B8%8D%E5%A5%BD%E7%9A%84%E4%BA%8B%E5%BF%85%E5%B0%86%E8%BF%87%E5%8E%BB%EF%BC%89/">论文阅读一（武汉加油、中国加油、不好的事必将过去）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/05/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">《机器学习》读书笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/05/%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%90%86%E8%A7%A3/">卷积的理解</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
