@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>Chrome好用的插件</title>
+      <link href="/2020/03/20/Chrome%E5%A5%BD%E7%94%A8%E7%9A%84%E6%8F%92%E4%BB%B6/"/>
+      <url>/2020/03/20/Chrome%E5%A5%BD%E7%94%A8%E7%9A%84%E6%8F%92%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[<h1 id="插件推荐"><a href="#插件推荐" class="headerlink" title="插件推荐"></a>插件推荐</h1><p>1.tampermonkey(油猴)</p><p><img src="https://img-blog.csdnimg.cn/2020032014552567.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>最好用的插件，一件更比六件强。它能安装好多<a href="https://greasyfork.org/zh-CN/scripts" target="_blank" rel="noopener">别人写好的脚本</a>，达到很多不同的功能，如去广告、免费下载、免登录等，而且占用内存还不会增加。</p><p>2.谷歌上网助手<br><img src="https://img-blog.csdnimg.cn/20200320145450101.png#pic_center" alt="在这里插入图片描述"><br>科学上网最简单的方式，价格也还能接受。</p><p>3.FasterChrome</p><p>网页加速插件，效果明显，占用内存小。</p><p>4.The Great Suspender</p><p>上网查资料难免会打开很多标签页，哪个都有可能回顾，关了很难再找，不关又占用大量内存。此插件应运而生，将你长时间没看的标签页挂起，不在占用内存（相当于关掉了网页，但是保留标签页）。</p><p>5.go to tab </p><p>浏览你打开的所有标签页，当打开标签页过多，每个标签页内容便看不清，此插件可完整查看标签页名称。与插件4配合使用，效果惊人。</p><p>6.Infinity</p><p>轻量级新标签页美化插件，可以自动换壁纸，用的人超级多。</p><p>7.one tab</p><p>一键将所有打开的标签页收集于此插件，释放内存，保留名称，可再次打开。</p><p>8.vimium</p><p>vim党福利，可以用键盘控制网页，释放鼠标。缺点是需要记住一些快捷键，且不是所有网页都支持该插件。有点鸡肋。</p><p>9.一键管理扩展</p><p>最小的插件管理插件，当安装插件过多时，会拖慢浏览器速度，这时便需要插件管理工具，有选择的使用插件。</p><p>10.Chrome清理大师<br><img src="https://img-blog.csdnimg.cn/20200320145307641.png#pic_center" alt="在这里插入图片描述"><br>很好用的清理工具。</p><h1 id="插件安装方法"><a href="#插件安装方法" class="headerlink" title="插件安装方法"></a>插件安装方法</h1><ul><li>进入扩展程序界面</li></ul><p>1.在地址栏输入chrome://extensions/，回车。<br>2.点击浏览器右上角的自定义及控制》更多工具》扩展程序</p><ul><li>安装插件</li></ul><p>1.打开开发者模式<br>2.下载好的插件都是 .crx 格式，可将其直接拖到扩展程序界面，完成安装。<br>3.或者将crx文件重命名为rar文件或zip文件，并解压。在扩展程序界面点击加载已解压的扩展程序，找到刚才解压的文件夹，点击，即可完成安装。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hexo + github 搭建个人博客</title>
       <link href="/2020/03/20/hexo%20+%20github%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
       <url>/2020/03/20/hexo%20+%20github%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
