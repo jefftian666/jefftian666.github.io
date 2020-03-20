@@ -176,6 +176,145 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/05/%E3%80%8ADeepLearning%20with%20Python%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jeff Tian">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="求知若饥,虚心若愚。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/%E3%80%8ADeepLearning%20with%20Python%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" class="post-title-link" itemprop="url">《DeepLearning with Python》读书笔记（一）</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-05 12:55:01 / Modified: 12:55:08" itemprop="dateCreated datePublished" datetime="2020-03-05T12:55:01+08:00">2020-03-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-什么是深度学习"><a href="#1-什么是深度学习" class="headerlink" title="1.什么是深度学习"></a>1.什么是深度学习</h1><p>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200217185528695.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200217185528695.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =800x)</p>
+<h2 id="三张图理解深度学习工作原理"><a href="#三张图理解深度学习工作原理" class="headerlink" title="三张图理解深度学习工作原理"></a>三张图理解深度学习工作原理</h2><p>神经网络中每层对输入数据所做的具体操作保存在该层的权重（weight）中，其本质是一串数字。用术语来说，每层实现的变换由其权重来参数化（parameterize，见图 1-7）。权重有时也被称为该层的参数（parameter）。在这种语境下，学习的意思是为神经网络的所有层找到一组权重值，使得该网络能够将每个示例输入与其目标正确地一一对应。<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200217190131517.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200217190131517.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =500x)<br>想要控制一件事物，首先需要能够观察它。想要控制神经网络的输出，就需要能够衡量该输出与预期值之间的距离。这是神经网络损失函数（loss function）的任务，该函数也叫目标函数（objective function）。损失函数的输入是网络预测值与真实目标值（即你希望网络输出的<br>结果），然后计算一个距离值，衡量该网络在这个示例上的效果好坏<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200217190500415.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200217190500415.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =400x)<br>深度学习的基本技巧是利用这个距离值作为反馈信号来对权重值进行微调，以降低当前示 例对应的损失值（见图 1-9）。这种调节由优化器（optimizer）来完成，它实现了所谓的反向 传播（backpropagation）算法，这是深度学习的核心算法。<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200217194424145.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200217194424145.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =400x)<br>一开始对神经网络的权重随机赋值，因此网络只是实现了一系列随机变换。其输出结果自然也和理想值相去甚远，相应地，损失值也很高。但随着网络处理的示例越来越多，权重值也 在向正确的方向逐步微调，损失值也逐渐降低。这就是训练循环（training loop），将这种循环重复足够多的次数（通常对数千个示例进行数十次迭代），得到的权重值可以使损失函数最小。具有最小损失的网络，其输出值与目标值尽可能地接近，这就是训练好的网络。再次强调，这是一个简单的机制，一旦具有足够大的规模，将会产生魔法般的效果。</p>
+<h1 id="2-神经网络的数学基础"><a href="#2-神经网络的数学基础" class="headerlink" title="2.神经网络的数学基础"></a>2.神经网络的数学基础</h1><h2 id="2-2-神经网络的数据表示"><a href="#2-2-神经网络的数据表示" class="headerlink" title="2.2 神经网络的数据表示"></a>2.2 神经网络的数据表示</h2><p>数据存储在多维 Numpy 数组中，也叫张量（tensor）。一般来说，当前所 有机器学习系统都使用张量作为基本数据结构。张量对这个领域非常重要，重要到 Google 的 TensorFlow 都以它来命名。那么什么是张量？ 张量这一概念的核心在于，它是一个数据容器。它包含的数据几乎总是数值数据，因此它 是数字的容器。你可能对矩阵很熟悉，它是二维张量。张量是矩阵向任意维度的推广［注意， 张量的维度（dimension）通常叫作轴（axis）］。</p>
+<h3 id="2-2-1标量（0D张量）"><a href="#2-2-1标量（0D张量）" class="headerlink" title="2.2.1标量（0D张量）"></a>2.2.1标量（0D张量）</h3><p>仅包含一个数字的张量叫作标量（scalar，也叫标量张量、零维张量、0D 张量）。在 Numpy 中，一个 float32 或 float64 的数字就是一个标量张量（或标量数组）。标量张量有 0 个轴。张量轴的个数也叫作 阶（rank）。</p>
+<h3 id="2-2-2向量（1D张量）"><a href="#2-2-2向量（1D张量）" class="headerlink" title="2.2.2向量（1D张量）"></a>2.2.2向量（1D张量）</h3><p>数字组成的数组叫作向量（vector）或一维张量（1D 张量）。一维张量只有一个轴。下面是一个 Numpy 向量。<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200217202516264.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200217202516264.png#pic_center</a> =300x)<br>这个向量有 5 个元素，所以被称为 5D 向量。不要把 5D 向量和 5D 张量弄混！ 5D 向量只 有一个轴，沿着轴有 5 个维度，而 5D 张量有 5 个轴（沿着每个轴可能有任意个维度）。维度 （dimensionality）可以表示沿着某个轴上的元素个数（比如 5D 向量），也可以表示张量中轴的个 数（比如 5D 张量），这有时会令人感到混乱。对于后一种情况，技术上更准确的说法是 5 阶张量 （张量的阶数即轴的个数），但 5D 张量这种模糊的写法更常见。</p>
+<h3 id="2-2-3-矩阵（2D张量）"><a href="#2-2-3-矩阵（2D张量）" class="headerlink" title="2.2.3 矩阵（2D张量）"></a>2.2.3 矩阵（2D张量）</h3><p>向量组成的数组叫作矩阵（matrix）或二维张量（2D 张量）。矩阵有 2 个轴（通常叫作行和列）。</p>
+<h3 id="2-2-4-3D-张量与更高维张量"><a href="#2-2-4-3D-张量与更高维张量" class="headerlink" title="2.2.4     3D 张量与更高维张量"></a>2.2.4     3D 张量与更高维张量</h3><p>将多个矩阵组合成一个新的数组，可以得到一个 3D 张量，你可以将其直观地理解为数字组成的立方体。将多个 3D 张量组合成一个数组，可以创建一个 4D 张量，以此类推。深度学习处理的一般是 0D 到 4D 的张量，但处理视频数据时可能会遇到 5D 张量。</p>
+<h3 id="2-2-5-关键属性"><a href="#2-2-5-关键属性" class="headerlink" title="2.2.5 关键属性"></a>2.2.5 关键属性</h3><p>张量是由以下三个关键属性来定义的。</p>
+<ul>
+<li><strong>轴的个数（阶）</strong>。例如，3D 张量有 3 个轴，矩阵有 2 个轴。这在 Numpy 等 Python 库中也叫张量的 ndim。</li>
+<li><strong>形状</strong>。这是一个整数元组，表示张量沿每个轴的维度大小（元素个数）。例如，前面矩阵示例的形状为 (3, 5)，3D 张量示例的形状为 (3, 3, 5)。向量的形状只包含一个元素，比如 (5,)，而标量的形状为空，即 ()。</li>
+<li><strong>数据类型（在 Python 库中通常叫作 dtype）</strong>。这是张量中所包含数据的类型，例如，张量的类型可以是 float32、uint8、float64 等。在极少数情况下，你可能会遇到字符（char）张量。注意，Numpy（以及大多数其他库）中不存在字符串张量，因为张量存储在预先分配的连续内存段中，而字符串的长度是可变的，无法用这种方式存储。<h3 id="2-2-6-在-Numpy-中操作张量"><a href="#2-2-6-在-Numpy-中操作张量" class="headerlink" title="2.2.6　在 Numpy 中操作张量"></a>2.2.6　在 Numpy 中操作张量</h3>我们使用语法 train_images[i] 来选择沿着第一个轴的特定数字。选择张量的特定元素叫作张量切片（tensor slicing）<h3 id="2-2-7-数据批量的概念"><a href="#2-2-7-数据批量的概念" class="headerlink" title="2.2.7　数据批量的概念"></a>2.2.7　数据批量的概念</h3>通常来说，深度学习中所有数据张量的第一个轴（0 轴，因为索引从 0 开始）都是样本轴（samples axis，有时也叫样本维度）。在 MNIST 的例子中，样本就是数字图像。</li>
+</ul>
+<p>此外，深度学习模型不会同时处理整个数据集，而是将数据拆分成小批量。具体来看，下面是 MNIST 数据集的一个批量，批量大小为 128。<br><img src="https://img-blog.csdnimg.cn/20200217203734895.png" alt="在这里插入图片描述"><br>对于这种批量张量，第一个轴（0 轴）叫作批量轴（batch axis）或批量维度（batch dimension）。在使用 Keras 和其他深度学习库时，你会经常遇到这个术语。</p>
+<h3 id="2-2-8-现实世界中的数据张量"><a href="#2-2-8-现实世界中的数据张量" class="headerlink" title="2.2.8　现实世界中的数据张量"></a>2.2.8　现实世界中的数据张量</h3><p>我们用几个你未来会遇到的示例来具体介绍数据张量。你需要处理的数据几乎总是以下类别之一。<br><img src="https://img-blog.csdnimg.cn/20200217203908145.png" alt="在这里插入图片描述"></p>
+<h3 id="2-2-9-向量数据"><a href="#2-2-9-向量数据" class="headerlink" title="2.2.9　向量数据"></a>2.2.9　向量数据</h3><p>这是最常见的数据。对于这种数据集，每个数据点都被编码为一个向量，因此一个数据批量就被编码为 2D 张量（即向量组成的数组），其中第一个轴是样本轴，第二个轴是特征轴。</p>
+<p>例如，人口统计数据集，其中包括每个人的年龄、邮编和收入。每个人可以表示为包含 3 个值的向量，而整个数据集包含 100 000 个人，因此可以存储在形状为 (100000, 3) 的 2D张量中。</p>
+<h3 id="2-2-10-时间序列数据或序列数据"><a href="#2-2-10-时间序列数据或序列数据" class="headerlink" title="2.2.10　时间序列数据或序列数据"></a>2.2.10　时间序列数据或序列数据</h3><p>当时间（或序列顺序）对于数据很重要时，应该将数据存储在带有时间轴的 3D 张量中。每个样本可以被编码为一个向量序列（即 2D 张量），因此一个数据批量就被编码为一个 3D 张量（见图 2-3）。<br><img src="https://img-blog.csdnimg.cn/20200217204620754.png#pic_center" alt="在这里插入图片描述"><br>根据惯例，时间轴始终是第 2 个轴（索引为 1 的轴）。例如，股票价格数据集。每一分钟，我们将股票的当前价格、前一分钟的最高价格和前一分钟的最低价格保存下来。因此每分钟被编码为一个 3D 向量，整个交易日被编码为一个形状为 (390, 3) 的 2D 张量（一个交易日有 390 分钟），而 250 天的数据则可以保存在一个形状为 (250, 390, 3) 的 3D 张量中。这里每个样本是一天的股票数据。</p>
+<h3 id="2-2-11-图像数据"><a href="#2-2-11-图像数据" class="headerlink" title="2.2.11　图像数据"></a>2.2.11　图像数据</h3><p>图像通常具有三个维度：高度、宽度和颜色深度。虽然灰度图像（比如 MNIST 数字图像） 只有一个颜色通道，因此可以保存在 2D 张量中，但按照惯例，图像张量始终都是 3D 张量，灰 度图像的彩色通道只有一维。因此，如果图像大小为 256×256，那么 128 张灰度图像组成的批 量可以保存在一个形状为 (128, 256, 256, 1) 的张量中，而 128 张彩色图像组成的批量则 可以保存在一个形状为 (128, 256, 256, 3) 的张量中（见图 2-4）。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200217205041235.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>图像张量的形状有两种约定：通道在后（channels-last）的约定（在 TensorFlow 中使用）和 通道在前（channels-first）的约定（在 Theano 中使用）。Google 的 TensorFlow 机器学习框架将 颜色深度轴放在最后：(samples, height, width, color_depth)。与此相反，Theano 将图像深度轴放在批量轴之后：(samples, color_depth, height, width)。如果采 用 Theano 约定，前面的两个例子将变成 (128, 1, 256, 256) 和 (128, 3, 256, 256)。 Keras 框架同时支持这两种格式。</p>
+<h3 id="2-2-12-视频数据"><a href="#2-2-12-视频数据" class="headerlink" title="2.2.12　视频数据"></a>2.2.12　视频数据</h3><p>视频数据是现实生活中需要用到 5D 张量的少数数据类型之一。视频可以看作一系列帧， 每一帧都是一张彩色图像。由于每一帧都可以保存在一个形状为 (height, width, color_ depth) 的 3D 张量中，因此一系列帧可以保存在一个形状为 (frames, height, width,  color_depth) 的 4D 张量中，而不同视频组成的批量则可以保存在一个 5D 张量中，其形状为 (samples, frames, height, width, color_depth)。 举个例子，一个以每秒 4 帧采样的 60 秒 YouTube 视频片段，视频尺寸为 144×256，这个 视频共有 240 帧。4 个这样的视频片段组成的批量将保存在形状为 (4, 240, 144, 256, 3) 的张量中。总共有 106 168 320 个值！如果张量的数据类型（dtype）是 float32，每个值都是 32 位，那么这个张量共有 405MB。好大！你在现实生活中遇到的视频要小得多，因为它们不以 float32 格式存储，而且通常被大大压缩，比如 MPEG 格式。</p>
+<h2 id="2-3-神经网络的“齿轮”：张量运算"><a href="#2-3-神经网络的“齿轮”：张量运算" class="headerlink" title="2.3 神经网络的“齿轮”：张量运算"></a>2.3 神经网络的“齿轮”：张量运算</h2><h3 id="2-3-6-深度学习的几何解释"><a href="#2-3-6-深度学习的几何解释" class="headerlink" title="2.3.6　深度学习的几何解释"></a>2.3.6　深度学习的几何解释</h3><p>前面讲过，神经网络完全由一系列张量运算组成，而这些张量运算都只是输入数据的几何变换。因此，你可以将神经网络解释为高维空间中非常复杂的几何变换，这种变换可以通过许多简单的步骤来实现。</p>
+<p>对于三维的情况，下面这个思维图像是很有用的。想象有两张彩纸：一张红色，一张蓝色。将其中一张纸放在另一张上。现在将两张纸一起揉成小球。这个皱巴巴的纸球就是你的输入数据，每张纸对应于分类问题中的一个类别。神经网络（或者任何机器学习模型）要做的就是找<br>到可以让纸球恢复平整的变换，从而能够再次让两个类别明确可分。通过深度学习，这一过程可以用三维空间中一系列简单的变换来实现，比如你用手指对纸球做的变换，每次做一个动作，如图 2-9 所示。<br><img src="https://img-blog.csdnimg.cn/20200217211411141.png#pic_center" alt="在这里插入图片描述"><br>让纸球恢复平整就是机器学习的内容：为复杂的、高度折叠的数据流形找到简洁的表示。现在你应该能够很好地理解，为什么深度学习特别擅长这一点：它将复杂的几何变换逐步分解为一长串基本的几何变换，这与人类展开纸球所采取的策略大致相同。深度网络的每一层都通<br>过变换使数据解开一点点——许多层堆叠在一起，可以实现非常复杂的解开过程。</p>
+<h2 id="2-4-神经网络的“引擎”：基于梯度的优化"><a href="#2-4-神经网络的“引擎”：基于梯度的优化" class="headerlink" title="2.4　神经网络的“引擎”：基于梯度的优化"></a>2.4　神经网络的“引擎”：基于梯度的优化</h2><h1 id="4-机器学习基础"><a href="#4-机器学习基础" class="headerlink" title="4.机器学习基础"></a>4.机器学习基础</h1><h2 id="4-1-机器学习的四个分支"><a href="#4-1-机器学习的四个分支" class="headerlink" title="4.1 机器学习的四个分支"></a>4.1 机器学习的四个分支</h2><p><img src="https://img-blog.csdnimg.cn/20200220170900394.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>监督学习</strong></p>
+<p>监督学习是目前最常见的机器学习类型。给定一组样本（通常由人工标注），它可以学会将输入数据映射到已知目标［也叫标注（annotation）］。一般来说，近年来广受关注的深度学习应用几乎都属于监督学习，比如光学字符识别、语音识别、图像分类和语言翻译。虽然监督学习主要包括分类和回归，但还有更多的奇特变体，主要包括如下几种。</p>
+<ul>
+<li>序列生成（sequence generation）。给定一张图像，预测描述图像的文字。序列生成有时可以被重新表示为一系列分类问题，比如反复预测序列中的单词或标记。</li>
+<li>语法树预测（syntax tree prediction）。给定一个句子，预测其分解生成的语法树。</li>
+<li>目标检测（object detection）。给定一张图像，在图中特定目标的周围画一个边界框。这个问题也可以表示为分类问题（给定多个候选边界框，对每个框内的目标进行分类）或分类与回归联合问题（用向量回归来预测边界框的坐标）。</li>
+<li>图像分割（image segmentation）。给定一张图像，在特定物体上画一个像素级的掩模（mask）。</li>
+</ul>
+<p><strong>无监督学习</strong></p>
+<p>无监督学习是指在没有目标的情况下寻找输入数据的有趣变换，其目的在于数据可视化、数据压缩、数据去噪或更好地理解数据中的相关性。无监督学习是数据分析的必备技能，在解决监督学习问题之前，为了更好地了解数据集，它通常是一个必要步骤。降维（dimensionality<br>reduction）和聚类（clustering）都是众所周知的无监督学习方法。</p>
+<p>　<strong>自监督学习</strong><br>自监督学习是监督学习的一个特例，它与众不同，值得单独归为一类。自监督学习是没有 人工标注的标签的监督学习，你可以将它看作没有人类参与的监督学习。标签仍然存在（因为 总要有什么东西来监督学习过程），但它们是从输入数据中生成的，通常是使用启发式算法生 成的。 </p>
+<p>举个例子，自编码器（autoencoder）是有名的自监督学习的例子，其生成的目标就是未经 修改的输入。同样，给定视频中过去的帧来预测下一帧，或者给定文本中前面的词来预测下一个词， 都是自监督学习的例子［这两个例子也属于时序监督学习（temporally supervised learning），即用 未来的输入数据作为监督］。注意，监督学习、自监督学习和无监督学习之间的区别有时很模糊， 这三个类别更像是没有明确界限的连续体。自监督学习可以被重新解释为监督学习或无监督学 习，这取决于你关注的是学习机制还是应用场景。</p>
+<p>　<strong>强化学习</strong><br>　 强化学习一直以来被人们所忽视，但最近随着 Google 的 DeepMind 公司将其成功应用于学 习玩 Atari 游戏（以及后来学习下围棋并达到最高水平），机器学习的这一分支开始受到大量关注。 在强化学习中，智能体（agent）接收有关其环境的信息，并学会选择使某种奖励最大化的行动。 例如，神经网络会“观察”视频游戏的屏幕并输出游戏操作，目的是尽可能得高分，这种神经 网络可以通过强化学习来训练。</p>
+<p><strong>分类和回归术语表</strong><br>分类和回归都包含很多专业术语。<br>这些术语在机器学习领域都有确切的定义，你应该了解这些定义。</p>
+<ul>
+<li>样本（sample）或输入（input）：进入模型的数据点。</li>
+<li>预测（prediction）或输出（output）：从模型出来的结果。</li>
+<li>目标（target）：真实值。对于外部数据源，理想情况下，模型应该能够预测出目标。</li>
+<li>预测误差（prediction error）或损失值（loss value）：模型预测与目标之间的距离。</li>
+<li>类别（class）：分类问题中供选择的一组标签。例如，对猫狗图像进行分类时，“狗”和“猫”就是两个类别。</li>
+<li>标签（label）：分类问题中类别标注的具体例子。比如，如果 1234 号图像被标注为包含类别“狗”，那么“狗”就是 1234 号图像的标签。</li>
+<li>真值（ground-truth）或标注（annotation）：数据集的所有目标，通常由人工收集。</li>
+<li>二分类（binary classification）：一种分类任务，每个输入样本都应被划分到两个互斥的类别中。</li>
+<li>多分类（multiclass classification）：一种分类任务，每个输入样本都应被划分到两个以上的类别中，比如手写数字分类。</li>
+<li>多标签分类（multilabel classification）：一种分类任务，每个输入样本都可以分配多个标签。举个例子，如果一幅图像里可能既有猫又有狗，那么应该同时标注“猫”标签和“狗”标签。每幅图像的标签个数通常是可变的。</li>
+<li>标量回归（scalar regression）：目标是连续标量值的任务。预测房价就是一个很好的例子，不同的目标价格形成一个连续的空间。</li>
+<li>向量回归（vector regression）：目标是一组连续值（比如一个连续向量）的任务。如果对多个值（比如图像边界框的坐标）进行回归，那就是向量回归。</li>
+<li>小批量（mini-batch）或批量（batch）：模型同时处理的一小部分样本（样本数通常为 8~128）。样本数通常取 2 的幂，这样便于 GPU 上的内存分配。训练时，小批量用来为模型权重计算一次梯度下降更新。</li>
+</ul>
+<h1 id="5-深度学习用于计算机视觉"><a href="#5-深度学习用于计算机视觉" class="headerlink" title="5.深度学习用于计算机视觉"></a>5.深度学习用于计算机视觉</h1><h2 id="5-1-卷积神经网络简介"><a href="#5-1-卷积神经网络简介" class="headerlink" title="5.1　卷积神经网络简介"></a>5.1　卷积神经网络简介</h2><h3 id="5-1-1-卷积运算"><a href="#5-1-1-卷积运算" class="headerlink" title="5.1.1　卷积运算"></a>5.1.1　卷积运算</h3><p>密集连接层和卷积层的根本区别在于，Dense 层从输入特征空间中学到的是全局模式,比如对于 MNIST 数字，全局模式就是涉及所有像素的模式），而卷积层学到的是局部模式（见 图 5-1），对于图像来说，学到的就是在输入图像的二维小窗口中发现的模式。在上面的例子中， 这些窗口的大小都是 3×3。<br><img src="https://img-blog.csdnimg.cn/20200220171521683.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>这个重要特性使卷积神经网络具有以下两个有趣的性质。</p>
+<ul>
+<li>卷积神经网络学到的模式具有<strong>平移不变性（translation invariant）</strong>。卷积神经网络在图像 右下角学到某个模式之后，它可以在任何地方识别这个模式，比如左上角。对于密集连 接网络来说，如果模式出现在新的位置，它只能重新学习这个模式。这使得卷积神经网 络在处理图像时可以高效利用数据（因为视觉世界从根本上具有平移不变性），它只需 要更少的训练样本就可以学到具有泛化能力的数据表示。 <ul>
+<li>卷积神经网络可以学到模式的<strong>空间层次结构（spatial hierarchies of patterns）</strong>，见图 5-2。 第一个卷积层将学习较小的局部模式（比如边缘），第二个卷积层将学习由第一层特征 组成的更大的模式，以此类推。这使得卷积神经网络可以有效地学习越来越复杂、越来 越抽象的视觉概念（因为视觉世界从根本上具有空间层次结构）。<br><img src="https://img-blog.csdnimg.cn/20200220171822621.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>在 MNIST 示例中，第一个卷积层接收一个大小为 (28, 28, 1) 的特征图，并输出一个大 小为 (26, 26, 32) 的特征图，即它在输入上计算 32 个过滤器。对于这 32 个输出通道，每个 通道都包含一个 26×26 的数值网格，它是过滤器对输入的响应图（response map），表示这个过 滤器模式在输入中不同位置的响应（见图 5-3）。这也是特征图这一术语的含义：深度轴的每个 维度都是一个特征（或过滤器），而 2D 张量 output[:, :, n] 是这个过滤器在输入上的响应 的二维空间图（map）。<br><img src="https://img-blog.csdnimg.cn/20200220172040749.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>卷积由以下两个关键参数所定义。</li>
+</ul>
+</li>
+<li>从输入中提取的图块尺寸：这些图块的大小通常是 3×3 或 5×5。本例中为 3×3，这是很常见的选择。</li>
+<li>输出特征图的深度：卷积所计算的过滤器的数量。本例第一层的深度为 32，最后一层的深度是 64。</li>
+</ul>
+<p>卷积的工作原理：在 3D 输入特征图上滑动（slide）这些 3×3 或 5×5 的窗口，在每个可能 的位置停止并提取周围特征的 3D 图块［形状为 (window_height, window_width, input_ depth)］。然后每个 3D 图块与学到的同一个权重矩阵［叫作卷积核（convolution kernel）］做 张量积，转换成形状为 (output_depth,) 的 1D 向量。然后对所有这些向量进行空间重组， 使其转换为形状为 (height, width, output_depth) 的 3D 输出特征图。输出特征图中的 每个空间位置都对应于输入特征图中的相同位置（比如输出的右下角包含了输入右下角的信 息）。举个例子，利用 3×3 的窗口，向量 output[i, j, :] 来自 3D 图块 input[i-1:i+1,  j-1:j+1, :]。整个过程详见下图 。<br><img src="https://img-blog.csdnimg.cn/20200220173236295.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>注意，输出的宽度和高度可能与输入的宽度和高度不同。不同的原因可能有两点。</p>
+<ul>
+<li>边界效应，可以通过对输入特征图进行填充来抵消。</li>
+<li>使用了步幅（stride），稍后会给出其定义。</li>
+</ul>
+<p><strong>填充</strong><br>如果你希望输出特征图的空间维度与输入相同，那么可以使用填充（padding）。填充是在输入特征图的每一边添加适当数目的行和列，使得每个输入方块都能作为卷积窗口的中心。对于 3×3 的窗口，在左右各添加一列，在上下各添加一行。对于 5×5 的窗口，各添加两行和两<br>列（见图 5-6）。<br><img src="https://img-blog.csdnimg.cn/20200220173424317.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>对于 Conv2D 层，可以通过 padding 参数来设置填充，这个参数有两个取值：”valid” 表示不使用填充（只使用有效的窗口位置）；”same” 表示“填充后输出的宽度和高度与输入相同”。padding 参数的默认值为 “valid”。</p>
+<p><strong>卷积步幅</strong><br>两个连续窗口的距离是卷积的一个参数，叫作步幅，默认值为 1。也可以使用步进卷积（strided convolution），即步幅大于 1 的卷积。在图 5-7 中，你可以看到用步幅为 2 的 3×3 卷积从 5×5 输入中提取的图块（无填充）。<br><img src="https://img-blog.csdnimg.cn/20200220173618418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="5-1-2-最大池化运算"><a href="#5-1-2-最大池化运算" class="headerlink" title="5.1.2　最大池化运算"></a>5.1.2　最大池化运算</h3><p>最大池化的作用：对特征图进行下采样，与步进卷积类似。<br>最大池化是从输入特征图中提取窗口，并输出每个通道的最大值。它的概念与卷积类似，但是最大池化使用硬编码的 max 张量运算对局部图块进行变换，而不是使用学到的线性变换（卷积核）。最大池化与卷积的最大不同之处在于，最大池化通常使用 2×2 的窗口和步幅 2，其目的是将特征图下采样 2 倍。与此相对的是，卷积通常使用 3×3 窗口和步幅 1。</p>
+<p>简而言之，使用下采样的原因，一是减少需要处理的特征图的元素个数，二是通过让连续 卷积层的观察窗口越来越大（即窗口覆盖原始输入的比例越来越大），从而引入空间过滤器的层 级结构。 </p>
+<p>注意，最大池化不是实现这种下采样的唯一方法。你已经知道，还可以在前一个卷积层中 使用步幅来实现。此外，你还可以使用平均池化来代替最大池化，其方法是将每个局部输入图 块变换为取该图块各通道的平均值，而不是最大值。但最大池化的效果往往比这些替代方法更好。 简而言之，原因在于特征中往往编码了某种模式或概念在特征图的不同位置是否存在（因此得 名特征图），而观察不同特征的最大值而不是平均值能够给出更多的信息。因此，最合理的子采 样策略是首先生成密集的特征图（通过无步进的卷积），然后观察特征每个小图块上的最大激活， 而不是查看输入的稀疏窗口（通过步进卷积）或对输入图块取平均，因为后两种方法可能导致 错过或淡化特征是否存在的信息。</p>
+<h3 id="5-3-3-小结"><a href="#5-3-3-小结" class="headerlink" title="5.3.3　小结"></a>5.3.3　小结</h3><ul>
+<li>卷积神经网络是用于计算机视觉任务的最佳机器学习模型。即使在非常小的数据集上也可以从头开始训练一个卷积神经网络，而且得到的结果还不错。</li>
+<li>在小型数据集上的主要问题是过拟合。在处理图像数据时，数据增强是一种降低过拟合的强大方法。</li>
+<li>利用特征提取，可以很容易将现有的卷积神经网络复用于新的数据集。对于小型图像数据集，这是一种很有价值的方法。</li>
+<li>作为特征提取的补充，你还可以使用微调，将现有模型之前学到的一些数据表示应用于新问题。这种方法可以进一步提高模型性能。</li>
+<li>现在你已经拥有一套可靠的工具来处理图像分类问题，特别是对于小型数据集。</li>
+</ul>
+<h2 id="9-2-深度学习的局限性"><a href="#9-2-深度学习的局限性" class="headerlink" title="9.2　深度学习的局限性"></a>9.2　深度学习的局限性</h2><p>深度学习模型只是将一个向量空间映射到另一个向量空间的简单而又连续的几何 变换链。它能做的只是将一个数据流形 X 映射到另一个流形 Y，前提是从 X 到 Y 存在可学习的 连续变换。深度学习模型可以被看作一种程序，但反过来说，大多数程序都不能被表示为深度 学习模型。对于大多数任务而言，要么不存在相应的深度神经网络能够解决任务，要么即使存 在这样的网络，它也可能是不可学习的（learnable）。后一种情况的原因可能是相应的几何变换 过于复杂，也可能是没有合适的数据用于学习。 </p>
+<p>通过堆叠更多的层并使用更多训练数据来扩展当前的深度学习技术，只能在表面上缓解一 些问题，无法解决更根本的问题，比如深度学习模型可以表示的内容非常有限，比如大多数你 想要学习的程序都不能被表示为数据流形的连续几何变形。</p>
+<p>简而言之，深度学习模型并不理解它们的输入，至少不是人类所说的理解。我们自己对图 像、声音和语言的理解是基于我们作为人类的感觉运动体验。机器学习模型无法获得这些体验， 因此也就无法用与人类相似的方式来理解它们的输入。通过对输入模型的大量训练样本进行标 记，我们可以让模型学会一个简单几何变换，这个变换在一组特定样本上将数据映射到人类概念， 但这种映射只是我们头脑中原始模型的简化。我们头脑中的原始模型是从我们作为具身主体的 体验发展而来的。机器学习模型就像是镜子中的模糊图像（见图 9-3）。<br><img src="https://img-blog.csdnimg.cn/20200220175249156.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/05/Linux%E5%A4%87%E5%BF%98%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -568,7 +707,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

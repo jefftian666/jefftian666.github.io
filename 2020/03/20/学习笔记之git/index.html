@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
+  </script>
+
+  <meta name="description" content="参考一参考二 安装Git国内直接从官网下载比较困难，速度极慢。可以从镜像下载。下载完成后，按默认选项安装即可。安装完成后，在开始菜单里找到“Git”-&gt;“Git Bash”，蹦出一个类似命令行窗口的东西，就说明Git安装成功！安装完成后，还需要最后一步设置，在git bash中输入： 12$ git config --global user.name &quot;jefftian&quot;$ git conf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习笔记之git">
+<meta property="og:url" content="http://yoursite.com/2020/03/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bgit/index.html">
+<meta property="og:site_name" content="求知若饥,虚心若愚。">
+<meta property="og:description" content="参考一参考二 安装Git国内直接从官网下载比较困难，速度极慢。可以从镜像下载。下载完成后，按默认选项安装即可。安装完成后，在开始菜单里找到“Git”-&gt;“Git Bash”，蹦出一个类似命令行窗口的东西，就说明Git安装成功！安装完成后，还需要最后一步设置，在git bash中输入： 12$ git config --global user.name &quot;jefftian&quot;$ git conf">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200305215708615.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200305215732107.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200305220138334.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-03-20T10:14:08.743Z">
+<meta property="article:modified_time" content="2020-03-20T10:25:52.339Z">
+<meta property="article:author" content="Jeff Tian">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200305215708615.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70">
+
+<link rel="canonical" href="http://yoursite.com/2020/03/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bgit/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>学习笔记之git | 求知若饥,虚心若愚。</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">求知若饥,虚心若愚。</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bgit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jeff Tian">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="求知若饥,虚心若愚。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          学习笔记之git
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 18:14:08 / Modified: 18:25:52" itemprop="dateCreated datePublished" datetime="2020-03-20T18:14:08+08:00">2020-03-20</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/900002180232448" target="_blank" rel="noopener">参考一</a><br><a href="https://www.cnblogs.com/jyd0124/p/git1.html" target="_blank" rel="noopener">参考二</a></p>
+<h1 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h1><p>国内直接从<a href="http://git-scm.com/download/win" target="_blank" rel="noopener">官网</a>下载比较困难，速度极慢。<br>可以从<a href="https://npm.taobao.org/mirrors/git-for-windows" target="_blank" rel="noopener">镜像</a>下载。<br>下载完成后，按默认选项安装即可。<br>安装完成后，在开始菜单里找到“Git”-&gt;“Git Bash”，蹦出一个类似命令行窗口的东西，就说明Git安装成功！<br>安装完成后，还需要最后一步设置，在git bash中输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"jefftian"</span></span><br><span class="line">$ git config --global user.email <span class="string">"email@163.com"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意git config命令的–global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。<h1 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h1></li>
+</ul>
+<p>1.选择一个合适的文件夹，比如H盘，创建一个空目录。空白处右键，选择Git bash here：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir learngit</span><br><span class="line">$ <span class="built_in">cd</span> learngit</span><br><span class="line">$ <span class="built_in">pwd</span></span><br><span class="line">/h/learngit</span><br></pre></td></tr></table></figure>
+<p>确保目录名（包括父目录）不包含中文。</p>
+<p>2.通过<code>git init</code>命令把这个目录变成Git可以管理的仓库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /h/learngit/.git/</span><br></pre></td></tr></table></figure>
+<p>多了一个.git的目录，这个目录是Git来跟踪管理版本库的，没事千万不要手动修改这个目录里面的文件，不然改乱了，就把Git仓库给破坏了。如果没有看到.git目录，那是因为这个目录默认是隐藏的，用<code>ls -ah</code>命令就可以看见。</p>
+<p>至此，在我们创建的learngit文件夹中编写的文件，就可以进行版本控制了。</p>
+<h1 id="Git常用命令总结"><a href="#Git常用命令总结" class="headerlink" title="Git常用命令总结"></a>Git常用命令总结</h1><h2 id="1-Git工作区域"><a href="#1-Git工作区域" class="headerlink" title="1.Git工作区域"></a>1.Git工作区域</h2><ul>
+<li>工作区（Working Directory）：就是我们平时存放项目代码的地方</li>
+<li>暂存区（Index / Stage）：暂存区是工作区用来提交更改（commit）前可以暂存工作区的变化（用于临时存放你的改动），事实上它只是一个文件，保存即将提交到文件列表信息</li>
+<li>Git仓库（Repository）：安全存放数据的位置，这里面有你提交到所有版本的数据，受版本控制<br><img src="https://img-blog.csdnimg.cn/20200305215708615.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200305215732107.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>Directory：使用Git管理的一个目录，也就是一个仓库，包含我们的工作空间和Git的管理空间。</li>
+<li>WorkSpace：需要通过Git进行版本控制的目录和文件，这些目录和文件组成了工作空间。</li>
+<li>.git：存放Git管理信息的目录，初始化仓库的时候自动创建。</li>
+<li>Index/Stage：暂存区，或者叫待提交更新区，在提交进入repo之前，我们可以把所有的更新放在暂存区。</li>
+<li>Local Repo：本地仓库，一个存放在本地的版本库；HEAD会只是当前的开发分支（branch）。</li>
+<li>Stash：隐藏，是一个工作状态保存栈，用于保存/恢复WorkSpace中的临时状态。<h2 id="2-Git-版本提交"><a href="#2-Git-版本提交" class="headerlink" title="2.Git 版本提交"></a>2.Git 版本提交</h2>（１）在工作目录中添加、修改文件；</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ touch test.cpp</span><br><span class="line">$ vim test.cpp</span><br></pre></td></tr></table></figure>
+
+<p>（２）将需要进行版本管理的文件放入暂存区域；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add test.cpp</span><br></pre></td></tr></table></figure>
+
+<p>（３）将暂存区域的文件提交到git仓库。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">"描述信息"</span></span><br></pre></td></tr></table></figure>
+
+<p>  因此，git管理的文件有三种状态：已修改（modified）,已暂存（staged）,已提交(committed)<br><img src="https://img-blog.csdnimg.cn/20200305220138334.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><code>git status</code>命令可以让我们时刻掌握仓库当前的状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br></pre></td></tr></table></figure>
+
+<p>查看上次对 file 进行的修改：<code>git diff file</code>顾名思义就是查看difference，显示的格式正是Unix通用的diff格式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git diff test.cpp</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-版本回退"><a href="#3-版本回退" class="headerlink" title="3.版本回退"></a>3.版本回退</h2><p>版本控制系统肯定有某个命令可以告诉我们历史记录，在Git中，我们用<code>git log</code>命令查看，<code>git log</code>命令显示从最近到最远的提交日志，包含版本号（commit id）。如果嫌输出信息太多，看得眼花缭乱的，可以试试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --pretty=oneline</span><br></pre></td></tr></table></figure>
+
+<p>当我们要把当前版本回退到上一个版本，就可以使用<code>git reset</code>命令,上一个版本就是<strong>head^</strong>，上上一个版本就是<strong>head^^</strong>，当然往上100个版本写100个^比较容易数不过来，所以写成<strong>head~100</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard head^</span><br></pre></td></tr></table></figure>
+
+<p>如果想要回到版本回退之前的版本，可用下面的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard 版本号</span><br></pre></td></tr></table></figure>
+<p>版本号（commit id）没必要写全，前几位就可以了，Git会自动去找。当然也不能只写前一两位，因为Git可能会找到多个版本号</p>
+<p>为了获得版本号，Git提供了一个命令<code>git reflog</code>用来记录你的每一次命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reflog</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-撤销修改"><a href="#4-撤销修改" class="headerlink" title="4.撤销修改"></a>4.撤销修改</h2><ul>
+<li><strong>当发生下面两种情况时，想要放弃本次修改，可使用此命令：</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -- test.cpp</span><br></pre></td></tr></table></figure>
+<p>命令<code>git checkout -- file</code>意思就是，把 file 文件在工作区的修改全部撤销，这里有两种情况：</p>
+<p>一种是file 自修改后还没有被放到暂存区（<strong>commit后修改了</strong>），现在，撤销修改就回到和版本库一模一样的状态；</p>
+<p>一种是 file 已经添加到暂存区后，又作了修改（<strong>add后修改了</strong>），现在，撤销修改就回到添加到暂存区后的状态。</p>
+<p>总之，就是让这个文件回到最近一次<code>git commit</code>或<code>git add</code>时的状态。</p>
+<ul>
+<li><strong>当发生另一种情况时，想要放弃本次修改，可使用此命令：</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git reset head test.cpp</span><br><span class="line">$ git checkout -- test.cpp</span><br></pre></td></tr></table></figure>
+<p>这种情况是，<strong>修改后add 了</strong>，或者<strong>直接 git rm</strong>,想要放弃这种修改，即需要此命令。<br>命令<code>git reset head &lt;file&gt;</code>可以把暂存区的修改撤销掉（unstage），相当于没有add</p>
+<p><code>git reset</code>命令既可以回退版本，也可以把暂存区的修改删除掉。当我们用head时，表示最新的版本。</p>
+<h2 id="5-删除文件"><a href="#5-删除文件" class="headerlink" title="5.删除文件"></a>5.删除文件</h2><p>当我们把commit过的文件删除(<code>rm</code>)了，那么<br>1.确实要从版本库中删除该文件，那就用命令<code>git rm</code>删掉，并且<code>git commit</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git rm test.txt</span><br><span class="line">$ git commit -m <span class="string">"remove test.txt"</span></span><br></pre></td></tr></table></figure>
+
+<p>2.删错了。因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -- test.txt</span><br></pre></td></tr></table></figure>
+
+<p><code>git checkout</code>其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</p>
+<h1 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h1><p>由于本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，所以，需要一点设置：</p>
+<p><strong>第1步</strong>：创建<code>SSH Key</code>。在用户主目录下，看看有没有<code>.ssh</code>目录，如果有，再看看这个目录下有没有id_rsa和<code>id_rsa.pub</code>这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">"youremail@163.com"</span></span><br></pre></td></tr></table></figure>
+<p>你需要把邮件地址换成你自己的邮件地址，然后一路回车，使用默认值即可，由于这个Key也不是用于军事目的，所以也无需设置密码。</p>
+<p>如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有<code>id_rsa</code>和<code>id_rsa.pub</code>两个文件，这两个就是SSH Key的秘钥对，<code>id_rsa</code>是私钥，不能泄露出去，<code>id_rsa.pub</code>是公钥，可以放心地告诉任何人。</p>
+<p><strong>第2步</strong>：登陆GitHub，打开“Account settings”，“SSH Keys”页面：</p>
+<p>然后，点<code>“Add SSH Key”</code>，填上任意Title，在Key文本框里粘贴<code>id_rsa.pub</code>文件的内容，点<code>“Add Key”</code>，你就应该看到已经添加的Key。</p>
+<h2 id="1-添加远程库"><a href="#1-添加远程库" class="headerlink" title="1.添加远程库"></a>1.添加远程库</h2><p>1.现在GitHub上建立一个库，比如命名为learngit 。<br>2.在本地库打开<code>git bash</code>，执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin git@github.com:jefftian666/learngit.git</span><br></pre></td></tr></table></figure>
+<p>添加后，远程库的名字就是origin，这是Git默认的叫法，也可以改成别的，但是origin这个名字一看就知道是远程库。</p>
+<p>下一步，就可以把本地库的所有内容推送到远程库上：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure>
+<p>把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。</p>
+<p>由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。</p>
+<p>推送成功后，可以立刻在GitHub页面中看到远程库的内容已经和本地一模一样，从现在起，只要本地作了提交，就可以通过命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当你第一次使用Git的clone或者push命令连接GitHub时，会得到一个警告，输入yes回车即可。</p>
+</blockquote>
+<h2 id="2-从远程库克隆"><a href="#2-从远程库克隆" class="headerlink" title="2.从远程库克隆"></a>2.从远程库克隆</h2><p>从GitHub上找一个远程库，用命令git clone克隆一个本地库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:jefftian666/gitskills.git</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/jefftian666/gitskills.git</span><br></pre></td></tr></table></figure>
+<h2 id="3-fork别人的库"><a href="#3-fork别人的库" class="headerlink" title="3.fork别人的库"></a>3.fork别人的库</h2><p>如何参与一个开源项目呢？比如人气极高的bootstrap项目，这是一个非常强大的CSS框架，你可以访问它的项目主页<a href="https://github.com/twbs/bootstrap，点“Fork”就在自己的账号下克隆了一个bootstrap仓库，然后，从自己的账号下clone：" target="_blank" rel="noopener">https://github.com/twbs/bootstrap，点“Fork”就在自己的账号下克隆了一个bootstrap仓库，然后，从自己的账号下clone：</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:jefftian666//bootstrap.git</span><br></pre></td></tr></table></figure>
+<p>一定要从自己的账号下clone仓库，这样你才能推送修改。</p>
+<h2 id="4-使用码云"><a href="#4-使用码云" class="headerlink" title="4.使用码云"></a>4.使用码云</h2><p>把本地的learngit库同时关联GitHub的learngit和gitee的learngit<br>1.删除已有的GitHub远程库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote rm origin</span><br></pre></td></tr></table></figure>
+<p>使用多个远程库时，我们要注意，git给远程库起的默认名称是origin，如果有多个远程库，我们需要用不同的名称来标识不同的远程库。</p>
+<p>2.关联GitHub的远程库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add github_origin git@github.com:jefftian666/learngit.git</span><br></pre></td></tr></table></figure>
+<p>注意，远程库的名称叫github_origin，不叫origin了。</p>
+<p>3.关联Gitee的远程库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add gitee_origin git@gitee.com:jefftian666/learngit.git</span><br></pre></td></tr></table></figure>
+<p>注意，远程库的名称叫gitee_origin，不叫origin了。</p>
+<p>现在，我们用<code>git remote -v</code>查看远程库信息，可以看到两个远程库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git remote -v</span><br><span class="line">gitee_origin    git@gitee.com:jefftian666/learngit.git (fetch)</span><br><span class="line">gitee_origin    git@gitee.com:jefftian666/learngit.git (push)</span><br><span class="line">github_origin   git@github.com:jefftian666/learngit.git (fetch)</span><br><span class="line">github_origin   git@github.com:jefftian666/learngit.git (push)</span><br></pre></td></tr></table></figure>
+
+<p>5.如果要推送到GitHub，使用命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push github_origin master</span><br></pre></td></tr></table></figure>
+
+<p>如果要推送到Gitee，使用命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push gitee_origin master</span><br></pre></td></tr></table></figure>
+
+<p>这样一来，我们的本地库就可以同时与多个远程库互相同步。</p>
+<h1 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h1><h2 id="1-创建与合并分支"><a href="#1-创建与合并分支" class="headerlink" title="1.创建与合并分支"></a>1.创建与合并分支</h2><p>Git鼓励大量使用分支：</p>
+<p>查看分支：<code>git branch</code></p>
+<p>创建分支：<code>git branch &lt;name&gt;</code></p>
+<p>切换分支：<code>git checkout &lt;name&gt;</code>或者<code>git switch &lt;name&gt;</code></p>
+<p>创建+切换分支：<code>git checkout -b &lt;name&gt;</code>或者<code>git switch -c &lt;name&gt;</code></p>
+<p>合并某分支到当前分支：<code>git merge &lt;name&gt;</code></p>
+<p>合并时禁用Fast forward模式，Git就会在merge时生成一个新的commit： <code>git merge  --no-ff  -m &quot;merge with no-ff&quot;  &lt;name&gt;</code></p>
+<p>删除分支：<code>git branch -d &lt;name&gt;</code></p>
+<h2 id="2-bug分支"><a href="#2-bug分支" class="headerlink" title="2.bug分支"></a>2.bug分支</h2><p>当你接到一个修复一个代号101的bug的任务时，很自然地，你想创建一个分支issue-101来修复它，但是，等等，当前正在dev上进行的工作还没有提交，并不是你不想提交，而是工作只进行到一半，还没法提交，预计完成还需1天时间。但是，必须在两个小时内修复该bug，怎么办？</p>
+<p>幸好，Git还提供了一个stash功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git stash save <span class="string">"储存信息"</span></span><br></pre></td></tr></table></figure>
+<p>现在，用<code>git status</code>查看工作区，就是干净的（除非有没有被Git管理的文件），因此可以放心地创建分支来修复bug。<br>工作区是干净的，刚才的工作现场存到哪去了？用<code>git stash list</code>命令看看：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git stash list</span><br></pre></td></tr></table></figure>
+<p>Git把stash内容存在某个地方了，但是需要恢复一下，用<code>git stash pop</code>，恢复的同时把stash内容也删了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git stash pop</span><br></pre></td></tr></table></figure>
+<p>你可以多次stash，恢复的时候，先用<code>git stash list</code>查看，然后恢复指定的stash，用命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git stash apply stash@&#123;0&#125;</span><br></pre></td></tr></table></figure>
+<p>在master分支上修复的bug，想要合并到当前dev分支，可以用<code>git cherry-pick &lt;commit&gt;</code>命令，把bug提交的修改“复制”到当前分支，避免重复劳动。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git cherry-pick &lt;commit&gt;</span><br></pre></td></tr></table></figure>
+<p>开发一个新feature，最好新建一个分支；</p>
+<p>如果要丢弃一个没有被合并过的分支，可以通过<code>git branch -D &lt;name&gt;</code>强行删除。分支还没有被合并，如果删除，将丢失掉修改.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -D feature-vulcan</span><br></pre></td></tr></table></figure>
+<h2 id="3-多人协作"><a href="#3-多人协作" class="headerlink" title="3.多人协作"></a>3.多人协作</h2><p>当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin。<br>要查看远程库的信息，用<code>it remote</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote</span><br></pre></td></tr></table></figure>
+<p>或者，用<code>git remote -v</code>显示更详细的信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote -v</span><br></pre></td></tr></table></figure>
+<p>上面显示了可以抓取和推送的origin的地址。如果没有推送权限，就看不到push的地址。</p>
+<h3 id="1-推送分支"><a href="#1-推送分支" class="headerlink" title="1.推送分支"></a>1.推送分支</h3><p>推送分支，就是把该分支上的所有<strong>本地提交</strong>推送到远程库。推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+
+<p>如果要推送其他分支，比如dev，就改成：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin dev</span><br></pre></td></tr></table></figure>
+
+<p>但是，并不是一定要把本地分支往远程推送，那么，哪些分支需要推送，哪些不需要呢？</p>
+<p><code>master</code>分支是主分支，因此要时刻与远程同步；</p>
+<p><code>dev</code>分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；</p>
+<p><code>bug</code>分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；</p>
+<p><code>feature</code>分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。</p>
+<p>总之，就是在Git中，分支完全可以在本地自己藏着玩，是否推送，视你的心情而定！</p>
+<h3 id="2-抓取分支"><a href="#2-抓取分支" class="headerlink" title="2.抓取分支"></a>2.抓取分支</h3><p>多人协作时，大家都会往master和dev分支上推送各自的修改。</p>
+<p>现在，模拟一个你的小伙伴，可以在另一台电脑（注意要把SSH Key添加到GitHub）或者同一台电脑的另一个目录下克隆：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:jefftian666/learngit.git</span><br></pre></td></tr></table></figure>
+<p>当你的小伙伴从远程库clone时，默认情况下，你的小伙伴只能看到本地的master分支。不信可以用<code>git branch</code>命令看看：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git branch</span><br><span class="line">* master</span><br></pre></td></tr></table></figure>
+
+<p>现在，你的小伙伴要在<code>dev</code>分支上开发，就必须创建远程<code>origin</code>的<code>dev</code>分支到本地，于是他用这个命令创建本地<code>dev</code>分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b dev origin/dev</span><br></pre></td></tr></table></figure>
+
+<p>现在，他就可以在<code>dev</code>上继续修改，然后，时不时地把<code>dev</code>分支<code>push</code>到远程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git add env.txt</span><br><span class="line"></span><br><span class="line">$ git commit -m <span class="string">"add env"</span></span><br><span class="line"></span><br><span class="line">$ git push origin dev</span><br></pre></td></tr></table></figure>
+<p>你的小伙伴已经向<code>origin/dev</code>分支推送了他的提交，而碰巧你也对同样的文件作了修改，并试图推送：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ cat env.txt</span><br><span class="line">env</span><br><span class="line"></span><br><span class="line">$ git add env.txt</span><br><span class="line"></span><br><span class="line">$ git commit -m <span class="string">"add new env"</span></span><br><span class="line"></span><br><span class="line">$ git push origin dev</span><br></pre></td></tr></table></figure>
+<p>推送失败，因为你的小伙伴的最新提交和你试图推送的提交有冲突，解决办法也很简单，Git已经提示我们，先用<code>git pull</code>把最新的提交从<code>origin/dev</code>抓下来，然后，在本地合并，解决冲突，再推送：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
+<p><strong>git pull也失败了</strong>，原因是没有指定本地<code>dev</code>分支与远程<code>origin/dev</code>分支的链接，根据提示，设置<code>dev</code>和<code>origin/dev</code>的链接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch --<span class="built_in">set</span>-upstream-to=origin/dev dev</span><br></pre></td></tr></table></figure>
+<p>再pull：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
+<p>这回<code>git pull</code>成功，但是合并有冲突，需要手动解决，解决的方法和分支管理中的解决冲突完全一样。解决后，提交，再push：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">"fix env conflict"</span></span><br><span class="line"></span><br><span class="line">$ git push origin dev</span><br></pre></td></tr></table></figure>
+<p>因此，多人协作的工作模式通常是这样：</p>
+<p>首先，可以试图用<code>git push origin &lt;branch-name&gt;</code>推送自己的修改；</p>
+<p>如果推送失败，则因为远程分支比你的本地更新，需要先用<code>git pull</code>试图合并；</p>
+<p>如果合并有冲突，则解决冲突，并在本地提交；</p>
+<p>没有冲突或者解决掉冲突后，再用<code>git push origin &lt;branch-name&gt;</code>推送就能成功！</p>
+<p>如果<code>git pull</code>提示<code>no tracking information</code>，则说明本地分支和远程分支的链接关系没有创建，用命令<code>git branch --set-upstream-to &lt;branch-name&gt; origin/&lt;branch-name&gt;</code>。</p>
+<p>这就是多人协作的工作模式，一旦熟悉了，就非常简单。</p>
+<h3 id="3-rebase"><a href="#3-rebase" class="headerlink" title="3.rebase"></a>3.rebase</h3><p><code>git rebase</code>操作可以把本地未push的分叉提交历史整理成直线；</p>
+<p><code>git rebase</code>的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。</p>
+<h1 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h1><h2 id="1-创建标签"><a href="#1-创建标签" class="headerlink" title="1.创建标签"></a>1.创建标签</h2><p>在Git中打标签非常简单，首先，切换到需要打标签的分支上：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git branch</span><br><span class="line">* dev</span><br><span class="line">  master</span><br><span class="line">$ git checkout master</span><br><span class="line">Switched to branch <span class="string">'master'</span></span><br></pre></td></tr></table></figure>
+
+<p>然后，敲命令<code>git tag &lt;name&gt;</code>就可以打一个新标签：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag v1.0</span><br></pre></td></tr></table></figure>
+
+<p>可以用命令<code>git tag</code>查看所有标签：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git tag</span><br><span class="line">v1.0</span><br></pre></td></tr></table></figure>
+
+<p>默认标签是打在最新提交的commit上的。有时候，如果忘了打标签，比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？</p>
+<p>方法是找到历史提交的<code>commit id</code>，然后打上就可以了，比方说要对<code>add merge</code>这次提交打标签，它对应的<code>commit id</code>是<code>f52c633</code>，敲入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag v0.9 f52c633</span><br></pre></td></tr></table></figure>
+
+<p>再用命令<code>git tag</code>查看标签：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git tag</span><br><span class="line">v0.9</span><br><span class="line">v1.0</span><br></pre></td></tr></table></figure>
+
+<p>注意，标签不是按时间顺序列出，而是按字母排序的。可以用<code>git show &lt;tagname&gt;</code>查看标签信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git show v0.9</span><br></pre></td></tr></table></figure>
+
+<p>还可以创建带有说明的标签，用-a指定标签名，-m指定说明文字：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag -a v0.1 -m <span class="string">"version 0.1 released"</span> 1094adb</span><br></pre></td></tr></table></figure>
+
+<p>用命令<code>git show &lt;tagname&gt;</code>可以看到说明文字：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git show v0.1</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="2-操作标签"><a href="#2-操作标签" class="headerlink" title="2.操作标签"></a>2.操作标签</h2><p>如果标签打错了，也可以删除：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git tag -d v0.1</span><br><span class="line">Deleted tag <span class="string">'v0.1'</span> (was f15b0dd)</span><br></pre></td></tr></table></figure>
+
+<p>因为创建的标签都只存储在本地，不会自动推送到远程。所以，打错的标签可以在本地安全删除。</p>
+<p>如果要推送某个标签到远程，使用命令<code>git push origin &lt;tagname&gt;</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin v1.0</span><br></pre></td></tr></table></figure>
+<p>或者，一次性推送全部尚未推送到远程的本地标签：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin --tags</span><br></pre></td></tr></table></figure>
+<p>如果标签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag -d v0.9</span><br></pre></td></tr></table></figure>
+<p>然后，从远程删除。删除命令也是push，但是格式如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin :refs/tags/v0.9</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1 id="自定义git"><a href="#自定义git" class="headerlink" title="自定义git"></a>自定义git</h1><h2 id="1-配置别名"><a href="#1-配置别名" class="headerlink" title="1.配置别名"></a>1.配置别名</h2><table>
+<thead>
+<tr>
+<th>alias</th>
+<th>realname</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>lg</td>
+<td>log –color –graph –pretty=format:’%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset’ –abbrev-commit</td>
+</tr>
+<tr>
+<td>st</td>
+<td>status</td>
+</tr>
+<tr>
+<td>co</td>
+<td>checkout</td>
+</tr>
+<tr>
+<td>ci</td>
+<td>commit</td>
+</tr>
+<tr>
+<td>br</td>
+<td>branch</td>
+</tr>
+<tr>
+<td>unstage</td>
+<td>reset HEAD</td>
+</tr>
+<tr>
+<td>last</td>
+<td>log -1</td>
+</tr>
+</tbody></table>
+<p>当前用户的Git配置文件放在用户主目录下的一个隐藏文件<code>.gitconfig</code>中</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/20/Chrome%E5%A5%BD%E7%94%A8%E7%9A%84%E6%8F%92%E4%BB%B6/" rel="prev" title="Chrome好用的插件">
+      <i class="fa fa-chevron-left"></i> Chrome好用的插件
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Git"><span class="nav-number">1.</span> <span class="nav-text">安装Git</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建版本库"><span class="nav-number">2.</span> <span class="nav-text">创建版本库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git常用命令总结"><span class="nav-number">3.</span> <span class="nav-text">Git常用命令总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Git工作区域"><span class="nav-number">3.1.</span> <span class="nav-text">1.Git工作区域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Git-版本提交"><span class="nav-number">3.2.</span> <span class="nav-text">2.Git 版本提交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-版本回退"><span class="nav-number">3.3.</span> <span class="nav-text">3.版本回退</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-撤销修改"><span class="nav-number">3.4.</span> <span class="nav-text">4.撤销修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-删除文件"><span class="nav-number">3.5.</span> <span class="nav-text">5.删除文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#远程仓库"><span class="nav-number">4.</span> <span class="nav-text">远程仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-添加远程库"><span class="nav-number">4.1.</span> <span class="nav-text">1.添加远程库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-从远程库克隆"><span class="nav-number">4.2.</span> <span class="nav-text">2.从远程库克隆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-fork别人的库"><span class="nav-number">4.3.</span> <span class="nav-text">3.fork别人的库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-使用码云"><span class="nav-number">4.4.</span> <span class="nav-text">4.使用码云</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分支管理"><span class="nav-number">5.</span> <span class="nav-text">分支管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-创建与合并分支"><span class="nav-number">5.1.</span> <span class="nav-text">1.创建与合并分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-bug分支"><span class="nav-number">5.2.</span> <span class="nav-text">2.bug分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-多人协作"><span class="nav-number">5.3.</span> <span class="nav-text">3.多人协作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-推送分支"><span class="nav-number">5.3.1.</span> <span class="nav-text">1.推送分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-抓取分支"><span class="nav-number">5.3.2.</span> <span class="nav-text">2.抓取分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-rebase"><span class="nav-number">5.3.3.</span> <span class="nav-text">3.rebase</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#标签"><span class="nav-number">6.</span> <span class="nav-text">标签</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-创建标签"><span class="nav-number">6.1.</span> <span class="nav-text">1.创建标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-操作标签"><span class="nav-number">6.2.</span> <span class="nav-text">2.操作标签</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义git"><span class="nav-number">7.</span> <span class="nav-text">自定义git</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-配置别名"><span class="nav-number">7.1.</span> <span class="nav-text">1.配置别名</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jeff Tian</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jeff Tian</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
