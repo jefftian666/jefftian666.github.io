@@ -176,6 +176,326 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/05/%E7%90%86%E8%A7%A3%E4%B8%8A%E9%87%87%E6%A0%B7%E3%80%81%E4%B8%8B%E9%87%87%E6%A0%B7%E3%80%81%E6%B1%A0%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jeff Tian">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="求知若饥,虚心若愚。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/%E7%90%86%E8%A7%A3%E4%B8%8A%E9%87%87%E6%A0%B7%E3%80%81%E4%B8%8B%E9%87%87%E6%A0%B7%E3%80%81%E6%B1%A0%E5%8C%96/" class="post-title-link" itemprop="url">理解上采样、下采样、池化</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-05 12:55:40 / Modified: 12:55:47" itemprop="dateCreated datePublished" datetime="2020-03-05T12:55:40+08:00">2020-03-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="上采样、下采样"><a href="#上采样、下采样" class="headerlink" title="上采样、下采样"></a>上采样、下采样</h1><h2 id="缩小图像（或称为下采样（subsampled）或降采样（downsampled））"><a href="#缩小图像（或称为下采样（subsampled）或降采样（downsampled））" class="headerlink" title="缩小图像（或称为下采样（subsampled）或降采样（downsampled））"></a>缩小图像（或称为下采样（subsampled）或降采样（downsampled））</h2><p>主要目的有两个：<br>1、使得图像符合显示区域的大小；<br>2、生成对应图像的缩略图。</p>
+<h2 id="放大图像（或称为上采样（upsampling）或图像插值（interpolating））"><a href="#放大图像（或称为上采样（upsampling）或图像插值（interpolating））" class="headerlink" title="放大图像（或称为上采样（upsampling）或图像插值（interpolating））"></a>放大图像（或称为上采样（upsampling）或图像插值（interpolating））</h2><p>主要目的是：<br>放大原图像,从而可以显示在更高分辨率的显示设备上。对图像的缩放操作并不能带来更多关于该图像的信息, 因此图像的质量将不可避免地受到影响。然而，确实有一些缩放方法能够增加图像的信息，从而使得缩放后的图像质量超过原图质量的。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>下采样原理：对于一幅图像I尺寸为M<em>N，对其进行s倍下采样，即得到(M/s)</em>(N/s)尺寸的得分辨率图像，当然s应该是M和N的公约数才行，如果考虑的是矩阵形式的图像，就是把原始图像s*s窗口内的图像变成一个像素，这个像素点的值就是窗口内所有像素的均值：</p>
+<p>上采样原理：图像放大几乎都是采用内插值方法，即在原有图像像素的基础上在像素点之间采用合适的插值算法插入新的元素。如最近邻插值，双线性插值，均值插值，中值插值等方法。各种插值方法都有各自的优缺点。</p>
+<p>无论缩小图像（下采样）还是放大图像（上采样），采样方式有很多种。</p>
+<h1 id="池化"><a href="#池化" class="headerlink" title="池化"></a>池化</h1><p>池化（Pooling）是卷积神经网络中一个重要的概念，它实际上是一种形式的降采样。它会压缩输入的特征图，一方面减少了特征，导致了参数减少，进而简化了卷积网络计算时的复杂度；另一方面保持了特征的某种不变性（旋转、平移、伸缩等）。</p>
+<p>池化操作主要有两种，一种是平均池化(Average Pooling)，即对邻域内的特征点求平均；另一种是最大池化(Max Pooling)，即对邻域内的特征点取最大。最大池化（Max pooling）是将输入的图像划分为若干个矩形区域，对每个子区域输出最大值。直觉上，这种机制能够有效地原因在于，在发现一个特征之后，它的精确位置远不及它和其他特征的相对位置的关系重要。池化层会不断地减小数据的空间大小，因此参数的数量和计算量也会下降，这在一定程度上也控制了过拟合。通常来说，CNN的卷积层之间都会周期性地插入池化层。</p>
+<p>池化层通常会分别作用于每个输入的特征并减小其大小。当前最常用形式的池化层是每隔2个元素从图像划分出2*2的区块，然后对每个区块中的4个数取最大值。这将会减少75%的数据量。<br><img src="https://img-blog.csdnimg.cn/20200216214827576.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>池化方法特征提取误差主要来自两个部分：一是，邻域大小受限造成了估计值方差增大；二是，卷积层参数误差造成了估计均值的偏移。一般来说，在图像研究领域，对图像进行平均池化操作能减少第一种误差，同时更多地保留图像的背景信息；而另一方面，最大池化能减小第二种误差，更多地保留纹理信息。因此在进行卷积神经网络结构设计时，这两种池化方式往往交替使用。</p>
+<p>简而言之，池化就是去除杂余信息，保留关键信息</p>
+<h2 id="池化的作用"><a href="#池化的作用" class="headerlink" title="池化的作用"></a>池化的作用</h2><p>池化操作后的结果相比其输入缩小了。池化层的引入是仿照人的视觉系统对视觉输入对象进行降维和抽象。在卷积神经网络过去的工作中，研究者普遍认为池化层有如下三个功效：</p>
+<p>1.特征不变形：池化操作是模型更加关注是否存在某些特征而不是特征具体的位置。<br>2.特征降维：池化相当于在空间范围内做了维度约减，从而使模型可以抽取更加广范围的特征。同时减小了下一层的输入大小，进而减少计算量和参数个数。<br>3.在一定程度上防止过拟合，更方便优化。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/05/%E5%88%9D%E8%AF%86%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jeff Tian">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="求知若饥,虚心若愚。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/%E5%88%9D%E8%AF%86%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/" class="post-title-link" itemprop="url">初识语义分割</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-05 12:55:30 / Modified: 12:55:37" itemprop="dateCreated datePublished" datetime="2020-03-05T12:55:30+08:00">2020-03-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="语义分割基础知识"><a href="#语义分割基础知识" class="headerlink" title="语义分割基础知识"></a>语义分割基础知识</h1><p>在计算机视觉的语义感知部分主要分为图像分类、目标检测、语义分割、实例分割等。</p>
+<p>语义分割是一种视觉场景理解任务，它从像素水平上理解、识别图片内容，然后根据语义信息进行图像分割；它是一种稠密标签，目的是预测输入图片中每一个像素的类别标签。</p>
+<p>现有语义分割技术会出现分割图像边缘粗糙的现象，这在应用领域造成了一定的影响，尤其在对分割精确度要求较高的医学领域；而且在语义分割模型训练的过程中主要依赖人工标注的数据集样本，耗费较多的人力物力。因此，如何对分割图像边缘粗糙问题进行处理，提高分割精确度；如何降低语义分割模型训练对人工标注的数据集样本的依赖程度，提升网络的泛化能力，对语义分割技术的广泛应用具有非常重要的现实意义。</p>
+<h1 id="图像语义分割综述"><a href="#图像语义分割综述" class="headerlink" title="图像语义分割综述"></a>图像语义分割综述</h1><p>转载自<a href="https://zhuanlan.zhihu.com/p/37801090" target="_blank" rel="noopener">这儿</a></p>
+<h2 id="什么是语义分割"><a href="#什么是语义分割" class="headerlink" title="什么是语义分割"></a>什么是语义分割</h2><p>语义分割是在像素级别上的分类，属于同一类的像素都要被归为一类，因此语义分割是从像素级别来理解图像的。比如说如下的照片，属于人的像素都要分成一类，属于摩托车的像素也要分成一类，除此之外还有背景像素也被分为一类。注意语义分割不同于实例分割，举例来说，如果一张照片中有多个人，对于语义分割来说，只要将所由人的像素都归为一类，但是实例分割还要将不同人的像素归为不同的类。也就是说实例分割比语义分割更进一步。</p>
+<h2 id="语义分割的思路"><a href="#语义分割的思路" class="headerlink" title="语义分割的思路"></a>语义分割的思路</h2><h3 id="传统方法"><a href="#传统方法" class="headerlink" title="传统方法"></a>传统方法</h3><p>在深度学习方法流行之前，TextonForest和基于随机森林分类器等语义分割方法是用得比较多的方法。不过在深度卷积网络流行之后，深度学习方法比传统方法提升了很多，所以这里就不详细讲传统方法了。</p>
+<h3 id="深度学习方法"><a href="#深度学习方法" class="headerlink" title="深度学习方法"></a>深度学习方法</h3><p>深度学习方法在语义分割上得到了巨大成功，深度学习方法解决语义分割问题可以概括为几种思路。下面进行详细介绍。</p>
+<p>1.Patch classification<br>最初的深度学习方法应用于图像分割就是Patch classification。Patch classification方法，顾名思义，图像是切成块喂给深度模型的，然后对像素进行分类。使用图像块的主要原因是全连接层需要固定大小的图像。</p>
+<p>2.全卷积方法<br>2014年，全卷积网络（FCN）横空出世，FCN将网络全连接层用卷积取代，因此使任意图像大小的输入都变成可能，而且速度比Patch classification方法快很多。</p>
+<p>尽管移除了全连接层，但是CNN模型用于语义分割还存在一个问题，就是下采样操作（比如，pooling）。pooling操作可以扩大感受野因而能够很好地整合上下文信息（context中文称为语境或者上下文，通俗的理解就是综合了更多的信息来进行决策），对high-level的任务（比如分类），这是很有效的。但同时，由于pooling下采样操作，使得分辨率降低，因此削弱了位置信息，而语义分割中需要score map和原图对齐，因此需要丰富的位置信息。</p>
+<p>3.encoder-decoder架构<br>encoder-decoder是基于FCN的架构。encoder由于pooling逐渐减少空间维度，而decoder逐渐恢复空间维度和细节信息。通常从encoder到decoder还有shortcut connetction（捷径连接，也就是跨层连接）。其中U-net就是这种架构很流行的一种，如下图：<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216121702929.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216121702929.png#pic_center</a> =500x300)<br>4.空洞卷积<br>dilated/atrous （空洞卷积）架构，这种结构代替了pooling，一方面它可以保持空间分辨率，另外一方面它由于可以扩大感受野因而可以很好地整合上下文信息。如下图：<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216121135445.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216121135445.png#pic_center</a> =500x300)<br>5.条件随机场<br>除了以上思路，还有一种对分割结果进行后处理的方法，那就是条件随机场(Conditional Random Fields (CRFs))后处理用来改善分割效果。DeepLab系列文章基本都采用这种后处理方法，可以较好地改善分割结果，如下图：<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216121319384.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216121319384.png#pic_center</a> =500x300)</p>
+<h2 id="深度学习语义分割方法"><a href="#深度学习语义分割方法" class="headerlink" title="深度学习语义分割方法"></a>深度学习语义分割方法</h2><p>现在的深度学习语义分割模型基本上都是基于FCN发展而来的，它是开山鼻祖，一张图概括FCN的延伸方法：<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216121544933.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216121544933.png#pic_center</a> =500x300)<br>各方法的详细信息<br><img src="https://img-blog.csdnimg.cn/20200216121838301.png" alt="在这里插入图片描述"></p>
+<h3 id="各方法的简要介绍"><a href="#各方法的简要介绍" class="headerlink" title="各方法的简要介绍"></a>各方法的简要介绍</h3><p>下面简单总结一些从FCN进行改进的几种架构，关于每种架构的详细解读请看专栏中其他文章。</p>
+<h4 id="1-FCN"><a href="#1-FCN" class="headerlink" title="1.FCN"></a>1.FCN</h4><blockquote>
+<p>Fully Convolutional Networks for Semantic Segmentation<br>Submitted on 14 Nov 2014</p>
+</blockquote>
+<p>主要贡献</p>
+<p>1.使端对端的卷积语义分割网络变得流行起来。<br>2.通过deconvolutional layers进行上采样。<br>3.通过skip connection改善了上采样的粗糙度。</p>
+<p>概要</p>
+<p>1.<strong>全卷积化(Fully Convolutional)</strong>：用于解决逐像素(pixel-wise)的预测问题。通过将基础网络(例如VGG)最后面几个全连接层换成卷积层，可实现任意大小的图像输入，并且输出图像大小与输入相对应；<br>2.<strong>反卷积(deconvolution)</strong> ：上采样操作，用于恢复图片尺寸，方便后续进行逐像素预测;<br>3.<strong>跳跃结构(skip architecture)</strong>：用于融合高低层特征信息。通过跨层连接的结构，结合了网络浅层的细(fine-grain)粒度信息信息以及深层的粗糙(coarse)信息，以实现精准的分割任务。</p>
+<p>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216123101449.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216123101449.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =500x300)<br>FCN是基于深度学习的语义分割的开山之作，尽管现在很多方法都超越了FCN，但它的思想仍然有很重要的意义。</p>
+<h4 id="2-Segnet"><a href="#2-Segnet" class="headerlink" title="2. Segnet"></a>2. Segnet</h4><blockquote>
+<p>SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation<br>Submitted on 2 Nov 2015</p>
+</blockquote>
+<p>主要贡献</p>
+<p>使用Maxpooling indices来增强位置信息。</p>
+<p>简要概述</p>
+<p>FCN的upconvolution层+shortcut connections产生的分割图比较粗糙，因此SegNet增加了更多的shortcut connections。不过，SegNet并不是直接将encoder的特征进行直接复制，而是对maxpooling中的indices进行复制，这使得SegNet的效率更高。</p>
+<p>maxpooling 的indices复制原理如下：<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216220438471.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216220438471.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =300x)<br>FCN和SegNet都是encoder-decoder架构。<br>SegNet的benchmark表现太差了，不建议用这个网络。</p>
+<h4 id="3-Dilated-convolution"><a href="#3-Dilated-convolution" class="headerlink" title="3. Dilated convolution"></a>3. Dilated convolution</h4><p>论文信息</p>
+<blockquote>
+<p>Multi-Scale Context Aggregation by Dilated Convolutions<br>Submitted on 23 Nov 2015</p>
+</blockquote>
+<p>创新点</p>
+<p>1.使用空洞卷积用来进行稠密预测（dense prediction）。<br>2.提出上下文模块（context module），使用空洞卷积（Dilated Convolutions）来进行多尺度信息的的整合。</p>
+<p>简要解释</p>
+<p>pooling操作可以增大感受野，对于图像分类任务来说这有很大好处，但由于pooling操作降低了分辨率，这对语义分割来说很不利。因此作者提出一种叫做dilated convolution的操作来解决这个问题。dilated卷积(在deeplab中称为atrous卷积)。可以很好地提升感受野的同时可以保持空间分辨率。<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216220838429.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216220838429.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =500x)<br>网络架构有两种，一种是前端网络，另外一种是前端网络+上下文模块，分别介绍如下：</p>
+<p>将VGG网络的最后两个pooling层给拿掉了，之后的卷积层被dilated 卷积取代。并且在pool3和pool4之间空洞卷积的空洞率=2，pool4之后的空洞卷积的空洞率=4。作者将这种架构称为前端（front-end）。</p>
+<p>除了前端网络之外，作者还设计了一种叫做上下文模块（context module）的架构，加在前端网络之后。上下文模块中级联了多种不同空洞率的空洞卷积，使得多尺度的上下文信息可以得到整合，从而改善前端网络预测的效果。需要注意的是前端网络和上下文模块是分开训练的，因为作者在实验中发现，如果是联合在一起进行端对端的训练并不能改善性能。</p>
+<p>需要特别注意的是，网络输出的分割图并不是和原始图像大小一样的，而是其1/8，需要对输出的分割图进行线性插值才能得到最终的分割结果。这种做法也是很多其他的方法都使用的。</p>
+<h4 id="4-DeepLab-v1-v2"><a href="#4-DeepLab-v1-v2" class="headerlink" title="4. DeepLab(v1,v2)"></a>4. DeepLab(v1,v2)</h4><p><strong>论文信息</strong></p>
+<blockquote>
+<p>v1: Semantic Image Segmentation with Deep Convolutional Nets and Fully Connected CRFs<br>Submitted on 22 Dec 2014<br>v2 : DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs<br>Submitted on 2 Jun 2016</p>
+</blockquote>
+<p><strong>主要贡献</strong></p>
+<p>1.使用atrous卷积，也就是后来的空洞卷积，扩大感受野，保持分辨率。<br>2.提出了atrous spatial pyramid pooling (ASPP)，整合多尺度信息。<br>3.使用全连接条件随机场（fully connected CRF)进行后处理，改善分割结果。</p>
+<p><strong>简要概述</strong></p>
+<p>1.空洞卷积可以在不增加参数的情况下增加感受野。<br>2.通过两种方式来进行多尺度的处理：A.将原始图像的多种尺度喂给网络进行训练。B.通过平行的不同空洞率的空洞卷积层来获得。<br>3.通过全连接条件随机场来进行后处理，以改善分割结果。<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216221235418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216221235418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =700x)</p>
+<h4 id="5-RefineNet"><a href="#5-RefineNet" class="headerlink" title="5.RefineNet"></a>5.RefineNet</h4><p><strong>论文信息</strong></p>
+<blockquote>
+<p>RefineNet: Multi-Path Refinement Networks for High-Resolution Semantic Segmentation<br>Submitted on 20 Nov 2016</p>
+</blockquote>
+<p><strong>主要贡献</strong></p>
+<p>精心设计了encoder-decoder架构中的decoder部分，使得性能提升。<br>整个网络的设计都遵循residual connections，网络表达能力更强，梯度更容易反向传播。</p>
+<p><strong>简要概述</strong></p>
+<p>作者提出空洞卷积方法应用于语义分割也是有缺点的，包括：</p>
+<p>因为使用了大分辨率的feature map，因此计算代价大，并且需要大量的内存。对于这个问题，DeepLab的做法是只预测原始输入的1／8。<br>本文提出使用encoder-decoder架构。encoder部分是RESNET-101。decoder具有RefineNet blocks，它将此前的RefineNet blocks的低分辨率特征和encoder部分高分辨率特征进行concatenate/fuse。<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216221557410.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216221557410.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =700x)<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216221623130.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216221623130.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =700x)</p>
+<h4 id="6-PSPNet"><a href="#6-PSPNet" class="headerlink" title="6. PSPNet"></a>6. PSPNet</h4><p>论文信息</p>
+<blockquote>
+<p>Pyramid Scene Parsing Network<br>Submitted on 4 Dec 2016</p>
+</blockquote>
+<p><strong>主要贡献</strong></p>
+<p>使用pyramid pooling整合context。<br>使用auxiliary loss。</p>
+<p><strong>概要</strong></p>
+<p>骨架网络使用Resnet，并在此基础上加上pyramid pooling module。该模块用到了很多kernel大小不一的pooling 。将pooling的结果再上采样，经过concatenate进行融合。<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216221725398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216221725398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =700x)<br>在RESNET的第四阶段（即输入到金字塔池模块）之后，应用auxiliary loss。这种方法在别的地方也被称为intermediate supervision。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/05/%E3%80%8A%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2%E3%80%8B%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jeff Tian">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="求知若饥,虚心若愚。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/%E3%80%8A%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2%E3%80%8B%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">《视觉SLAM十四讲》笔记</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-05 12:55:16 / Modified: 12:55:22" itemprop="dateCreated datePublished" datetime="2020-03-05T12:55:16+08:00">2020-03-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-视觉SLAM-系统概述"><a href="#1-视觉SLAM-系统概述" class="headerlink" title="1. 视觉SLAM 系统概述"></a>1. 视觉SLAM 系统概述</h1><p>SLAM 是Simultaneous Localization and Mapping 的缩写，中文译作“同时定位与地图构建” 。它是指搭载特定传感器的主体，在没有环境先验信息的情况下，于运动过程中建立环境的模型，同时估计自己的运动。如果这里的传感器主要为相机，那就称为“视觉SLAM”。<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216222952173.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216222952173.png#pic_center</a> =300x)<br>视觉SLAM流程分为以下几步</p>
+<ul>
+<li>传感器信息读取。在视觉SLAM 中主要为相机图像信息的读取和预处理。<ul>
+<li>视觉里程计。视觉里程计任务是估算相邻图像间相机的运动，以及局部地图的样子。</li>
+<li>后端优化。后端接受不同时刻视觉里程计测量的相机位姿，以及回环检测的信息，对它们进行优化，得到全局一致的轨迹和地图。</li>
+<li>回环检测。回环检测判断机器人是否曾经到达过先前的位置。如果检测到回环，它会把信息提供给后端进行处理。</li>
+<li>建图。它根据估计的轨迹，建立与任务要求对应的地图。<h1 id="2-前端视觉里程计"><a href="#2-前端视觉里程计" class="headerlink" title="2. 前端视觉里程计"></a>2. 前端视觉里程计</h1>视觉里程计根据相邻图像的信息，估计出粗略的相机运动，给后端提供较好的初始值。视觉里程计的算法主要分为两个大类：特征点法和直接法。基于特征点法的前端，长久以来（直到现在）被认为是视觉里程计的主流方法。它运行稳定，对光照、动态物体不敏感，是目前比较成熟的解决方案。<br>核心问题：如何根据图像估计相机运动。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-1-特征点法"><a href="#2-1-特征点法" class="headerlink" title="2.1. 特征点法"></a>2.1. 特征点法</h2><p>特征点：由关键点和描述子两部分组成。关键点是指该特征点在图像里的位置，有些特征点还具有朝向、大小等信息。描述子通常是一个向量，按照某种人为设计的方式，描述了该关键点周围像素的信息。描述子是按照“外观相似的特征应该有相似的描述子”的原则设计的。</p>
+<p>特征匹配：视觉SLAM 中极为关键的一步，特征匹配解决了SLAM 中的数据关联问题，即确定当前看到的路标与之前看到的路标之间的对应关系。通过对图像与图像，或者图像与地图之间的描述子进行准确的匹配，我们可以为后续的姿态估计，优化等操作减轻大量负担。匹配方法：暴力匹配等。</p>
+<p>当相机为单目时，我们只知道2D 的像素坐标，因而问题是根据两组2D 点估计运动。该问题用对极几何来解决。</p>
+<p>当相机为双目、RGB-D 时，或者我们通过某种方法得到了距离信息，那问题就是根据两组3D 点估计运动。该问题通常用ICP 来解决。</p>
+<p>如果我们有3D 点和它们在相机的投影位置，也能估计相机的运动。该问题通过PnP求解。</p>
+<h3 id="2-1-1-2D-2D-对极几何"><a href="#2-1-1-2D-2D-对极几何" class="headerlink" title="2.1.1. 2D-2D: 对极几何"></a>2.1.1. 2D-2D: 对极几何</h3><p>假设我们从两张图像中，得到了一对配对好的特征点，如果我们有若干对这样的匹配点，就可以通过这些二维图像点的对应关系，恢复出在两帧之间摄像机的运动。<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216223504198.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216223504198.png#pic_center</a> =300x)<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216223545251.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216223545251.png#pic_center</a> =300x)<br>八点法+奇异值分解即可求得旋转矩阵R和位移向量t。</p>
+<h3 id="2-1-2-三角测量"><a href="#2-1-2-三角测量" class="headerlink" title="2.1.2. 三角测量"></a>2.1.2. 三角测量</h3><p>在得到运动之后，下一步我们需要用相机的运动估计特征点的空间位置。在单目SLAM 中，仅通过单张图像无法获得像素的深度信息，我们需要通过三角测量（Triangulation）（或三角化）的方法来估计地图点的深度。<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216223738272.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216223738272.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =300x)![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216223807598.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216223807598.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =300x)</p>
+<h3 id="2-1-3-3D-2D-PnP"><a href="#2-1-3-3D-2D-PnP" class="headerlink" title="2.1.3.  3D-2D: PnP"></a>2.1.3.  3D-2D: PnP</h3><p>PnP（Perspective-n-Point）是求解3D 到2D 点对运动的方法。它描述了当我们知道n 个3D 空间点以及它们的投影位置时，如何估计相机所在的位姿</p>
+<p>如果两张图像中，其中一张特征点的3D 位置已知，那么最少只需三个点对（需要至少一个额外点验证结果）就可以估计相机运动</p>
+<p>在双目或RGB-D 的视觉里程计中，我们可以直接使用PnP 估计相机运动。而在单目视觉里程计中，必须先进行初始化，然后才能使用PnP</p>
+<p>PnP 问题有很多种求解方法，例如用三对点估计位姿的P3P，直接线性变换（DLT），非线性优化构建最小二乘问题并迭代求解</p>
+<h3 id="2-1-4-3D-3D-ICP"><a href="#2-1-4-3D-3D-ICP" class="headerlink" title="2.1.4. 3D-3D: ICP"></a>2.1.4. 3D-3D: ICP</h3><p>假设一组配对好的3D 点（比如对两个RGB-D 图像进行了匹配）：<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216224001316.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216224001316.png#pic_center</a> =300x)<br>现在，找一个欧氏变换R; t，使得：<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216224025260.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216224025260.png#pic_center</a> =300x)<br>这个问题可以用迭代最近点（Iterative Closest Point, ICP）求解<br>ICP 的求解也分为两种方式：利用线性代数的求解（主要是SVD），以及利用非线性优化方式的求解（类似于Bundle Adjustment）。</p>
+<h3 id="2-1-5-特征点法的缺陷"><a href="#2-1-5-特征点法的缺陷" class="headerlink" title="2.1.5. 特征点法的缺陷"></a>2.1.5. 特征点法的缺陷</h3><p><strong>特征点法存在的问题：</strong></p>
+<ul>
+<li>关键点的提取与描述子的计算非常耗时</li>
+<li>使用特征点时，忽略了除特征点以外的所有信息。一张图像有几十万个像素，而特征点只有几百个。只使用特征点丢弃了大部分可能有用的图像信息。</li>
+<li>相机有时会运动到特征缺失的地方，往往这些地方没有明显的纹理信息。</li>
+</ul>
+<p><strong>克服对策：</strong></p>
+<ul>
+<li>只计算关键点，不计算描述子。同时，使用光流法（Optical Flow）来跟踪特征点的运动。这样可以回避计算和匹配描述子带来的时间，而光流本身的计算时间要小于特征点的计算与匹配。</li>
+<li>只计算关键点，不计算描述子。同时，使用直接法（Direct Method）来计算特征点在下一时刻图像的位置。这同样可以跳过描述子的计算过程，而且直接法的计算更加简单。</li>
+<li><h2 id="2-2-光流法"><a href="#2-2-光流法" class="headerlink" title="2.2. 光流法"></a>2.2. 光流法</h2>光流法仍然使用特征点，只是把匹配描述子替换成了光流跟踪，估计相机运动时仍使用对极几何、PnP 或ICP 算法。</li>
+</ul>
+<p>光流是一种描述像素随着时间，在图像之间运动的方法，计算部分像素运动的称为稀疏光流，计算所有像素的称为稠密光流。</p>
+<p>LK光流是光流法的一种，它对观测量做了“灰度不变”假设和“某个窗口内的像素具有相同的运动”假设。因而能够从前后两幅图片中追踪到同一个点的位置移动。</p>
+<p>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216224237540.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216224237540.png#pic_center</a> =300x)<br>在实际应用中，LK光流的作用就是跟踪特征点。与对每一帧提取特征点相比，使用LK光流只需要提取一次特征点，后续视频帧只需要跟踪就可以了，节约了许多特征提取时间。</p>
+<h2 id="2-3-直接法"><a href="#2-3-直接法" class="headerlink" title="2.3. 直接法"></a>2.3. 直接法</h2><p>在直接法中，根据图像的像素灰度信息同时估计相机的运动和点的投影，不要求提取到的点必须为角点。<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216224336943.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216224336943.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =400x)<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216224410575.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216224410575.png#pic_center</a> =400x)<br>直接法的思路是根据当前相机的位姿估计值，来寻找p2 的位置。但若相机位姿不够好，p2 的外观和p1 会有明显差别。于是，为了减小这个差别，我们优化相机的位姿，来寻找与p1 更相似的p2。光度误差（Photometric Error），也就是P 的两个像的亮度误差：<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/2020021622444270.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/2020021622444270.png#pic_center</a> =300x)<br>优化目标为该误差的二范数</p>
+<p>能够做这种优化的理由，仍是基于灰度不变假设。在直接法中，假设一个空间点在各个视角下，成像的灰度是不变的。有许多个（比如N 个）空间点Pi，那么，整个相机位姿估计问题变为：<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200216224522325.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200216224522325.png#pic_center</a> =400x)<br>然后使用G-N 或L-M 计算增量，迭代求解。</p>
+<h1 id="3-后端优化"><a href="#3-后端优化" class="headerlink" title="3. 后端优化"></a>3. 后端优化</h1><p>前端视觉里程计能给出一个短时间内的轨迹和地图，但由于不可避免的误差累积，这个地图在长时间内是不准确的。所以，在视觉里程计的基础上，我们还希望构建一个尺度、规模更大的优化问题，以考虑长时间内的最优轨迹和地图。</p>
+<h2 id="3-1-线性系统和卡尔曼滤波KF"><a href="#3-1-线性系统和卡尔曼滤波KF" class="headerlink" title="3.1. 线性系统和卡尔曼滤波KF"></a>3.1. 线性系统和卡尔曼滤波KF</h2><p>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/2020021718160174.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/2020021718160174.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center</a> =400x)</p>
+<h2 id="3-2-非线性系统和扩展的卡尔曼滤波EKF"><a href="#3-2-非线性系统和扩展的卡尔曼滤波EKF" class="headerlink" title="3.2. 非线性系统和扩展的卡尔曼滤波EKF"></a>3.2. 非线性系统和扩展的卡尔曼滤波EKF</h2><p>把卡尔曼滤波器的结果拓展到非线性系统中来，称为扩展卡尔曼滤波器（ExtendedKalman Filter，EKF）。通常的做法是，在某个点附近考虑运动方程以及观测方程的一阶泰勒展开，只保留一阶项，即线性的部分，然后按照线性系统进行推导。</p>
+<p>先定义一个卡尔曼增益Kk：</p>
+<p>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200217181656173.png#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200217181656173.png#pic_center</a> =300x)<br>在卡尔曼增益的基础上，后验概率的形式为：<br><img src="https://img-blog.csdnimg.cn/20200217181722547.png#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="3-3-光束法平差BA"><a href="#3-3-光束法平差BA" class="headerlink" title="3.3. 光束法平差BA"></a>3.3. 光束法平差BA</h2><p>所谓的Bundle Adjustment，是指从视觉重建中提炼出最优的3D 模型和相机参数（内参数和外参数）。从每一个特征点反射出来的几束光线（bundles of light rays），在我们把相机姿态和特征点空间位置做出最优的调整(adjustment) 之后，最后收束到相机光心的这个过程，简称为BA。<br><img src="https://img-blog.csdnimg.cn/20200217181837888.png#pic_center" alt="在这里插入图片描述"><br>左侧的p 是全局坐标系下的三维坐标点，右侧的us， vs 是该点在图像平面上的最终像素坐标。<br>系统的观测方程为：</p>
+<p>z=h(T,p)</p>
+<p>其中，T为相机的位姿变换矩阵,其对应的李代数为ξ。<br>则以最小二乘的角度考虑，可得此次观测的误差：</p>
+<p>e=z-h(T,p)</p>
+<p>然后，把其他时刻的观测量也考虑进来，我们可以给误差添加一个下标。设zij 为在位姿ξi 处观察路标pj 产生的数据，那么整体的代价函数（Cost Function）为：<br><img src="https://img-blog.csdnimg.cn/20200217181939854.png#pic_center" alt="在这里插入图片描述"><br>对这个最小二乘进行求解，相当于对位姿和路标同时作了调整，也就是所谓的BA。</p>
+<h2 id="3-4-位姿图优化"><a href="#3-4-位姿图优化" class="headerlink" title="3.4. 位姿图优化"></a>3.4. 位姿图优化</h2><p>构建一个只有轨迹的图优化，而位姿节点之间的边，可以由两个关键帧之间通过特征匹配之后得到的运动估计来给定初始值。一旦初始估计完成，我们就不再优化那些路标点的位置，而只关心所有的相机位姿之间的联系了。通过这种方式，我们省去了大量的特征点优化的计算，只保留了关键帧的轨迹，从而构建了所谓的位姿图<br><img src="https://img-blog.csdnimg.cn/20200217182110268.png#pic_center" alt="在这里插入图片描述"><br>位姿图优化中的节点表示相机位姿，边表示两个节点之间相对运动的估计。<br>边可表示为<br><img src="https://img-blog.csdnimg.cn/20200217182156248.png#pic_center" alt="在这里插入图片描述"><br>或按李群的写法：<br><img src="https://img-blog.csdnimg.cn/20200217182226320.png#pic_center" alt="在这里插入图片描述"><br>然后构建误差eij：<br><img src="https://img-blog.csdnimg.cn/20200217182249842.png#pic_center" alt="在这里插入图片描述"><br>所有的位姿顶点和位姿——位姿边构成了一个图优化，本质上是一个最小二乘问题，优化变量为各个顶点的位姿，边来自于位姿观测约束。记ε 为所有边的集合，那么总体目标函数为：<br><img src="https://img-blog.csdnimg.cn/20200217182312196.png#pic_center" alt="在这里插入图片描述"><br>我们依然可以用Gauss-Newton、Levenberg-Marquardt 等方法求解此问题，除了用李代数表示优化位姿以外，别的都是相似的。</p>
+<h1 id="4-回环检测"><a href="#4-回环检测" class="headerlink" title="4. 回环检测"></a>4. 回环检测</h1><h2 id="4-1-概述"><a href="#4-1-概述" class="headerlink" title="4.1. 概述"></a>4.1. 概述</h2><h3 id="4-1-1-回环检测的意义"><a href="#4-1-1-回环检测的意义" class="headerlink" title="4.1.1. 回环检测的意义"></a>4.1.1. 回环检测的意义</h3><p>前端提供特征点的提取和轨迹、地图的初值，而后端负责对这所有的数据进行优化。然而，如果像VO 那样仅考虑相邻时间上的关联，那么，之前产生的误差将不可避免地累计到下一个时刻，使得整个SLAM 会出现累积误差。长期估计的结果将不可靠，或者说，我们无法构建全局一致的轨迹和地图。</p>
+<p>回环检测模块，能够给出除了相邻帧之外的，一些时隔更加久远的约束。回环检测的关键，就是如何有效地检测出相机经过同一个地方这件事。如果能够成功地检测这件事，就可以为后端的Pose Graph 提供更多的有效数据，使之得到更好的估计，特别是得到一个全局一致（Global Consistent）的估计。</p>
+<h3 id="4-1-2-核心问题："><a href="#4-1-2-核心问题：" class="headerlink" title="4.1.2. 核心问题："></a>4.1.2. 核心问题：</h3><p>如何计算图像间的相似性</p>
+<h3 id="4-1-3-准确率和召回率"><a href="#4-1-3-准确率和召回率" class="headerlink" title="4.1.3. 准确率和召回率"></a>4.1.3. 准确率和召回率</h3><p><img src="https://img-blog.csdnimg.cn/20200217182505929.png#pic_center" alt="在这里插入图片描述"><br>准确率：算法提取的所有回环中，确实是真实回环的概率。<br>召回率：在所有真实回环中，被正确检测出来的概率。</p>
+<p>为了评价算法的好坏，我们会测试它在各种配置下的P 和R 值，然后做出一条Precision-Recall 曲线。当用召回率为横轴，用准确率为纵轴时，我们会关心整条曲线偏向右上方的程度、100% 准确率下的召回率，或者50% 召回率时候的准确率，作为评价算法的指标。</p>
+<p>值得一提的是，在SLAM 中，我们对准确率要求更高，而对召回率则相对宽容一些。由于假阳性的（检测结果是而实际不是的）回环将在后端的Pose Graph 中添加根本错误的边，有些时候会导致优化算法给出完全错误的结果。而相比之下，召回率低一些，则顶多有部分的回环没有被检测到，地图可能受一些累积误差的影响——然而仅需一两次回环就可以完全消除它们了。所以说在选择回环检测算法时，我们更倾向于把参数设置地更严格一些，或者在检测之后再加上回环验证的步骤。</p>
+<h2 id="4-2-词袋模型"><a href="#4-2-词袋模型" class="headerlink" title="4.2. 词袋模型"></a>4.2. 词袋模型</h2><p>词袋，也就是Bag-of-Words（BoW），目的是用“图像上有哪几种特征”来描述一个图像。<br>字典中的单词，假设为w1、w2、w3。然后，对于任意图像A，根据它们含有的单词，可记为：<br><img src="https://img-blog.csdnimg.cn/20200217182622842.png#pic_center" alt="在这里插入图片描述"><br>字典是固定的，所以只要用[1  1  0]T 这个向量就可以表达A 的意义。通过字典和单词，只需一个向量就可以描述整张图像了。</p>
+<p>同理，用[2  0  1]T 可以描述图像B。如果只考虑“是否出现”而不考虑数量的话，也可以是[1  0  1]T ，这时候这个向量就是二值的。于是，根据这两个向量，设计一定的计算方式，就能确定图像间的相似性了。当然如果对两个向量求差仍然有一些不同的做法，比如说对于a，b∈ RW，可以计算：<br><img src="https://img-blog.csdnimg.cn/20200217182649201.png#pic_center" alt="在这里插入图片描述"><br>其中范数取L1 范数，即各元素绝对值之和。请注意在两个向量完全一样时，我们将得到1；完全相反时（a 为0 的地方b 为1）得到0。这样就定义了两个描述向量的相似性，也就定义了图像之间的相似程度。</p>
+<h2 id="4-3-字典创建"><a href="#4-3-字典创建" class="headerlink" title="4.3. 字典创建"></a>4.3. 字典创建</h2><h3 id="4-3-1-K均值算法"><a href="#4-3-1-K均值算法" class="headerlink" title="4.3.1. K均值算法"></a>4.3.1. K均值算法</h3><p>字典由很多单词组成，而每一个单词代表了一个概念。一个单词与一个单独的特征点不同，它不是从单个图像上提取出来的，而是某一类特征的组合。所以，字典生成问题类似于一个聚类问题。当我们有N 个特征点，想要归成k 个类，那么用K-means 来做，主要有以下几个步骤：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200217182738524.png" alt="在这里插入图片描述"></p>
+<h3 id="4-3-2-k叉树字典"><a href="#4-3-2-k叉树字典" class="headerlink" title="4.3.2. k叉树字典"></a>4.3.2. k叉树字典</h3><p>使用一种k叉树来表达字典。它的思路很简单，类似于层次聚类，是K-means的直接扩展。假定我们有N 个特征点，希望构建一个深度为d，每次分叉为k 的树，那么做法如下：<br><img src="https://img-blog.csdnimg.cn/2020021718280963.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200217182842827.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>实际上，最终我们仍在叶子层构建了单词，而树结构中的中间节点仅供快速查找时使用。这样一个k 分支，深度为d 的树，可以容纳kd个单词。另一方面，在查找某个给定特征对应的单词时，只需将它与每个中间结点的聚类中心比较（一共d 次），即可找到最后的单词，保证了对数级别的查找效率。</p>
+<h2 id="4-4-相似度计算"><a href="#4-4-相似度计算" class="headerlink" title="4.4. 相似度计算"></a>4.4. 相似度计算</h2><p>考虑权重以后，对于某个图像A，它的特征点可对应到许多个单词，组成它的Bag-of-Words：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200217182921656.png#pic_center" alt="在这里插入图片描述"><br>对于给定的VA和VB，通过某些方式即可比较其相似度。如L1范数：<br><img src="https://img-blog.csdnimg.cn/20200217182945286.png#pic_center" alt="在这里插入图片描述"></p>
+<h1 id="5-建图"><a href="#5-建图" class="headerlink" title="5. 建图"></a>5. 建图</h1><p>所谓地图，即所有路标点的集合。一旦我们确定了路标点的位置，那就可以说我们完成了建图。SLAM 作为一种底层技术，往往是用来为上层应用提供信息的。应用层面对于“定位”的需求是相似的，他们希望SLAM 提供相机或搭载相机的主体的空间位姿信息。而对于地图，则存在着许多不同的需求。<br><img src="https://img-blog.csdnimg.cn/20200217183024765.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>稀疏地图只建模感兴趣的部分，也就是前面说了很久的特征点（路标点）。<br>稠密地图是指，建模所有看到过的部分。<br>在稠密重建，我们需要知道每一个像素点（或大部分像素点）的距离，那么大致上有以下几种解决方案：</p>
+<ol>
+<li>使用单目相机，利用移动相机之后进行三角化，测量像素的距离。</li>
+<li>使用双目相机，利用左右目的视差计算像素的距离（多目原理相同）。</li>
+<li>使用RGB-D 相机直接获得像素距离。<br>前两种方式称为立体视觉（Stereo Vision），其中移动单目的又称为移动视角的立体视觉（Moving View Stereo）。相比于RGB-D 直接测量的深度，单目和双目对深度的获取往往是“费力不讨好”的——我们需要花费大量的计算，最后得到一些不怎么可靠的¬深度估计。当然，RGB-D 也有一些量程、应用范围和光照的限制，不过相比于单目和双目的结果，使用RGB-D 进行稠密重建往往是更常见的选择。而单目双目的好处，是在目前RGB-D还无法很好应用的室外、大场景场合中，仍能通过立体视觉估计深度信息。<h2 id="5-1-单目稠密建图"><a href="#5-1-单目稠密建图" class="headerlink" title="5.1. 单目稠密建图"></a>5.1. 单目稠密建图</h2>在稠密深度图估计中，我们无法把每个像素都当作特征点，计算描述子。因此，稠密深度估计问题中，匹配就成为很重要的一环：如何确定第一张图的某像素，出现在其他图里的位置呢？这需要用到极线搜索和块匹配技术。然后，当我们知道了某个像素在各个图中的位置，就能像特征点那样，利用三角测量确定它的深度。<br><img src="https://img-blog.csdnimg.cn/20200217183125466.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>左边的相机观测到了某个像素p1。由于这是一个单目相机，我们无从知道它的深度，所以假设这个深度可能在某个区域之内，不妨说是某最小值到无穷远之间：(dmin，+∞)。因此，该像素对应的空间点就分布在某条线段（本例中是射线）上。在另一个视角（右侧相机）看来，这条线段的投影也形成图像平面上的一条线，我们知道这称为极线。<br>在p1 周围取一个大小为w * w 的小块，然后在极线上也取很多同样大小的小块进行比较，就可以一定程度上提高区分性。这就是所谓的块匹配。<br>然后计算小块与小块间的差异，存在很多计算方法，如<br><img src="https://img-blog.csdnimg.cn/20200217183155258.png#pic_center" alt="在这里插入图片描述"><br>它计算的是两个小块的相关性，接近0表示两个图像不相似，而接近1表示相似。<br><img src="https://img-blog.csdnimg.cn/2020021718322212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><h2 id="5-2-RGB-D稠密建图"><a href="#5-2-RGB-D稠密建图" class="headerlink" title="5.2. RGB-D稠密建图"></a>5.2. RGB-D稠密建图</h2>除了使用单目和双目进行稠密重建之外，在适用范围内，RGB-D 相机是一种更好的选择。在RGB-D 相机中可以完全通过传感器中硬件测量得到深度，无需消耗大量的计算资源来估计它们。并且，RGB-D 的结构光或飞时原理，保证了深度数据对纹理的无关性。即使面对纯色的物体，只要它能够反射光，我们就能测量到它的深度。这亦是RGB-D 传感器的一大优势。</li>
+</ol>
+<p>利用RGB-D 进行稠密建图是相对容易的。不过，根据地图形式不同，也存在着若干种不同的主流建图方式。最直观最简单的方法，就是根据估算的相机位姿，将RGB-D 数据转化为点云（Point Cloud），然后进行拼接，最后得到一个由离散的点组成的点云地图（Point Cloud Map）。在此基础上，如果我们对外观有进一步的要求，希望估计物体的表面，可以使用三角网格（Mesh），面片（Surfel）进行建图。另一方面，如果希望知道地图的障碍物信息并在地图上导航，亦可通过体素（Voxel）建立占据网格地图（Occupancy Map）。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/05/%E3%80%8ADeepLearning%20with%20Python%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -707,7 +1027,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
