@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>PS 抠图去白边</title>
+      <link href="/2020/03/27/PS%20%E6%8A%A0%E5%9B%BE%E5%8E%BB%E7%99%BD%E8%BE%B9/"/>
+      <url>/2020/03/27/PS%20%E6%8A%A0%E5%9B%BE%E5%8E%BB%E7%99%BD%E8%BE%B9/</url>
+      
+        <content type="html"><![CDATA[<h1 id="1-选区缩像素"><a href="#1-选区缩像素" class="headerlink" title="1. 选区缩像素"></a>1. 选区缩像素</h1><ol><li><p>按住Ctrl键，点击人物层缩略图，为人物建立选区；</p></li><li><p>点击“选择”→“修改”→“收缩”，将收缩量调整为“2像素”，将选区收缩2像素</p></li><li><p>按住<code>Ctrl+Shift+I</code> 反选选区，按下Delete键删除，就能完美地去除白边了。</p></li><li><p>按<code>Ctrl+D</code>取消选区。</p></li></ol><h1 id="2-滤镜处理法"><a href="#2-滤镜处理法" class="headerlink" title="2. 滤镜处理法"></a>2. 滤镜处理法</h1><ol><li><p>按住Ctrl键，点击人物层缩略图，为人物建立选区；</p></li><li><p>点击“图层”》“图层蒙版”》“显示选区”，为人物层添加图层蒙版；</p></li></ol><p><img src="https://img-blog.csdnimg.cn/20200327232232530.png#pic_center" alt="在这里插入图片描述"><br>3. 点击“滤镜”→“其他”→“最小值”，根据画面效果调整“最小值”，将保留值修改为“圆度”，最后直到白边消失即可；<br>4. <img src="https://img-blog.csdnimg.cn/20200327233851769.png#pic_center" alt="在这里插入图片描述"></p><h1 id="3-利用“选择并遮住”"><a href="#3-利用“选择并遮住”" class="headerlink" title="3. 利用“选择并遮住”"></a>3. 利用“选择并遮住”</h1><ol><li><p>按住Ctrl键，点击人物层缩略图，为人物建立选区；</p></li><li><p>点击“选择”→“选择并遮住（调整边缘）”；</p></li><li><p>首先勾选“智能半径”、“净化颜色”，然后分别调整“半径值”、“移动边缘”、“羽化值”（净化颜色数量直接保持默认即可）三个选项，直到白边消失为止，同样也能很好地消除白边；<br><img src="https://img-blog.csdnimg.cn/20200327233129153.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p></li></ol>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C++基础入门</title>
       <link href="/2020/03/20/C++%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/"/>
       <url>/2020/03/20/C++%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/</url>

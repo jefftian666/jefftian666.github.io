@@ -20,21 +20,23 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
   </script>
 
-  <meta name="description" content="上采样、下采样缩小图像（或称为下采样（subsampled）或降采样（downsampled））主要目的有两个：1、使得图像符合显示区域的大小；2、生成对应图像的缩略图。 放大图像（或称为上采样（upsampling）或图像插值（interpolating））主要目的是：放大原图像,从而可以显示在更高分辨率的显示设备上。对图像的缩放操作并不能带来更多关于该图像的信息, 因此图像的质量将不可避免地受">
+  <meta name="description" content="1. 选区缩像素 按住Ctrl键，点击人物层缩略图，为人物建立选区；  点击“选择”→“修改”→“收缩”，将收缩量调整为“2像素”，将选区收缩2像素  按住Ctrl+Shift+I 反选选区，按下Delete键删除，就能完美地去除白边了。  按Ctrl+D取消选区。   2. 滤镜处理法 按住Ctrl键，点击人物层缩略图，为人物建立选区；  点击“图层”》“图层蒙版”》“显示选区”，为人物层添加图">
 <meta property="og:type" content="article">
-<meta property="og:title" content="理解上采样、下采样、池化">
-<meta property="og:url" content="http://yoursite.com/2020/03/05/%E7%90%86%E8%A7%A3%E4%B8%8A%E9%87%87%E6%A0%B7%E3%80%81%E4%B8%8B%E9%87%87%E6%A0%B7%E3%80%81%E6%B1%A0%E5%8C%96/index.html">
+<meta property="og:title" content="PS 抠图去白边">
+<meta property="og:url" content="http://yoursite.com/2020/03/27/PS%20%E6%8A%A0%E5%9B%BE%E5%8E%BB%E7%99%BD%E8%BE%B9/index.html">
 <meta property="og:site_name" content="求知若饥,虚心若愚。">
-<meta property="og:description" content="上采样、下采样缩小图像（或称为下采样（subsampled）或降采样（downsampled））主要目的有两个：1、使得图像符合显示区域的大小；2、生成对应图像的缩略图。 放大图像（或称为上采样（upsampling）或图像插值（interpolating））主要目的是：放大原图像,从而可以显示在更高分辨率的显示设备上。对图像的缩放操作并不能带来更多关于该图像的信息, 因此图像的质量将不可避免地受">
+<meta property="og:description" content="1. 选区缩像素 按住Ctrl键，点击人物层缩略图，为人物建立选区；  点击“选择”→“修改”→“收缩”，将收缩量调整为“2像素”，将选区收缩2像素  按住Ctrl+Shift+I 反选选区，按下Delete键删除，就能完美地去除白边了。  按Ctrl+D取消选区。   2. 滤镜处理法 按住Ctrl键，点击人物层缩略图，为人物建立选区；  点击“图层”》“图层蒙版”》“显示选区”，为人物层添加图">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200216214827576.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="article:published_time" content="2020-03-05T04:55:40.174Z">
-<meta property="article:modified_time" content="2020-03-05T04:55:47.226Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327232232530.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327233851769.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327233129153.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-03-27T15:43:14.050Z">
+<meta property="article:modified_time" content="2020-03-27T15:43:21.454Z">
 <meta property="article:author" content="Jeff Tian">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200216214827576.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200327232232530.png#pic_center">
 
-<link rel="canonical" href="http://yoursite.com/2020/03/05/%E7%90%86%E8%A7%A3%E4%B8%8A%E9%87%87%E6%A0%B7%E3%80%81%E4%B8%8B%E9%87%87%E6%A0%B7%E3%80%81%E6%B1%A0%E5%8C%96/">
+<link rel="canonical" href="http://yoursite.com/2020/03/27/PS%20%E6%8A%A0%E5%9B%BE%E5%8E%BB%E7%99%BD%E8%BE%B9/">
 
 
 <script id="page-configurations">
@@ -47,7 +49,7 @@
   };
 </script>
 
-  <title>理解上采样、下采样、池化 | 求知若饥,虚心若愚。</title>
+  <title>PS 抠图去白边 | 求知若饥,虚心若愚。</title>
   
 
 
@@ -182,7 +184,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/05/%E7%90%86%E8%A7%A3%E4%B8%8A%E9%87%87%E6%A0%B7%E3%80%81%E4%B8%8B%E9%87%87%E6%A0%B7%E3%80%81%E6%B1%A0%E5%8C%96/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/27/PS%20%E6%8A%A0%E5%9B%BE%E5%8E%BB%E7%99%BD%E8%BE%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -195,7 +197,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          理解上采样、下采样、池化
+          PS 抠图去白边
         </h1>
 
         <div class="post-meta">
@@ -206,7 +208,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-05 12:55:40 / Modified: 12:55:47" itemprop="dateCreated datePublished" datetime="2020-03-05T12:55:40+08:00">2020-03-05</time>
+              <time title="Created: 2020-03-27 23:43:14 / Modified: 23:43:21" itemprop="dateCreated datePublished" datetime="2020-03-27T23:43:14+08:00">2020-03-27</time>
             </span>
 
           
@@ -227,17 +229,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="上采样、下采样"><a href="#上采样、下采样" class="headerlink" title="上采样、下采样"></a>上采样、下采样</h1><h2 id="缩小图像（或称为下采样（subsampled）或降采样（downsampled））"><a href="#缩小图像（或称为下采样（subsampled）或降采样（downsampled））" class="headerlink" title="缩小图像（或称为下采样（subsampled）或降采样（downsampled））"></a>缩小图像（或称为下采样（subsampled）或降采样（downsampled））</h2><p>主要目的有两个：<br>1、使得图像符合显示区域的大小；<br>2、生成对应图像的缩略图。</p>
-<h2 id="放大图像（或称为上采样（upsampling）或图像插值（interpolating））"><a href="#放大图像（或称为上采样（upsampling）或图像插值（interpolating））" class="headerlink" title="放大图像（或称为上采样（upsampling）或图像插值（interpolating））"></a>放大图像（或称为上采样（upsampling）或图像插值（interpolating））</h2><p>主要目的是：<br>放大原图像,从而可以显示在更高分辨率的显示设备上。对图像的缩放操作并不能带来更多关于该图像的信息, 因此图像的质量将不可避免地受到影响。然而，确实有一些缩放方法能够增加图像的信息，从而使得缩放后的图像质量超过原图质量的。</p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>下采样原理：对于一幅图像I尺寸为M<em>N，对其进行s倍下采样，即得到(M/s)</em>(N/s)尺寸的得分辨率图像，当然s应该是M和N的公约数才行，如果考虑的是矩阵形式的图像，就是把原始图像s*s窗口内的图像变成一个像素，这个像素点的值就是窗口内所有像素的均值：</p>
-<p>上采样原理：图像放大几乎都是采用内插值方法，即在原有图像像素的基础上在像素点之间采用合适的插值算法插入新的元素。如最近邻插值，双线性插值，均值插值，中值插值等方法。各种插值方法都有各自的优缺点。</p>
-<p>无论缩小图像（下采样）还是放大图像（上采样），采样方式有很多种。</p>
-<h1 id="池化"><a href="#池化" class="headerlink" title="池化"></a>池化</h1><p>池化（Pooling）是卷积神经网络中一个重要的概念，它实际上是一种形式的降采样。它会压缩输入的特征图，一方面减少了特征，导致了参数减少，进而简化了卷积网络计算时的复杂度；另一方面保持了特征的某种不变性（旋转、平移、伸缩等）。</p>
-<p>池化操作主要有两种，一种是平均池化(Average Pooling)，即对邻域内的特征点求平均；另一种是最大池化(Max Pooling)，即对邻域内的特征点取最大。最大池化（Max pooling）是将输入的图像划分为若干个矩形区域，对每个子区域输出最大值。直觉上，这种机制能够有效地原因在于，在发现一个特征之后，它的精确位置远不及它和其他特征的相对位置的关系重要。池化层会不断地减小数据的空间大小，因此参数的数量和计算量也会下降，这在一定程度上也控制了过拟合。通常来说，CNN的卷积层之间都会周期性地插入池化层。</p>
-<p>池化层通常会分别作用于每个输入的特征并减小其大小。当前最常用形式的池化层是每隔2个元素从图像划分出2*2的区块，然后对每个区块中的4个数取最大值。这将会减少75%的数据量。<br><img src="https://img-blog.csdnimg.cn/20200216214827576.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>池化方法特征提取误差主要来自两个部分：一是，邻域大小受限造成了估计值方差增大；二是，卷积层参数误差造成了估计均值的偏移。一般来说，在图像研究领域，对图像进行平均池化操作能减少第一种误差，同时更多地保留图像的背景信息；而另一方面，最大池化能减小第二种误差，更多地保留纹理信息。因此在进行卷积神经网络结构设计时，这两种池化方式往往交替使用。</p>
-<p>简而言之，池化就是去除杂余信息，保留关键信息</p>
-<h2 id="池化的作用"><a href="#池化的作用" class="headerlink" title="池化的作用"></a>池化的作用</h2><p>池化操作后的结果相比其输入缩小了。池化层的引入是仿照人的视觉系统对视觉输入对象进行降维和抽象。在卷积神经网络过去的工作中，研究者普遍认为池化层有如下三个功效：</p>
-<p>1.特征不变形：池化操作是模型更加关注是否存在某些特征而不是特征具体的位置。<br>2.特征降维：池化相当于在空间范围内做了维度约减，从而使模型可以抽取更加广范围的特征。同时减小了下一层的输入大小，进而减少计算量和参数个数。<br>3.在一定程度上防止过拟合，更方便优化。</p>
+        <h1 id="1-选区缩像素"><a href="#1-选区缩像素" class="headerlink" title="1. 选区缩像素"></a>1. 选区缩像素</h1><ol>
+<li><p>按住Ctrl键，点击人物层缩略图，为人物建立选区；</p>
+</li>
+<li><p>点击“选择”→“修改”→“收缩”，将收缩量调整为“2像素”，将选区收缩2像素</p>
+</li>
+<li><p>按住<code>Ctrl+Shift+I</code> 反选选区，按下Delete键删除，就能完美地去除白边了。</p>
+</li>
+<li><p>按<code>Ctrl+D</code>取消选区。</p>
+</li>
+</ol>
+<h1 id="2-滤镜处理法"><a href="#2-滤镜处理法" class="headerlink" title="2. 滤镜处理法"></a>2. 滤镜处理法</h1><ol>
+<li><p>按住Ctrl键，点击人物层缩略图，为人物建立选区；</p>
+</li>
+<li><p>点击“图层”》“图层蒙版”》“显示选区”，为人物层添加图层蒙版；</p>
+</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20200327232232530.png#pic_center" alt="在这里插入图片描述"><br>3. 点击“滤镜”→“其他”→“最小值”，根据画面效果调整“最小值”，将保留值修改为“圆度”，最后直到白边消失即可；<br>4. <img src="https://img-blog.csdnimg.cn/20200327233851769.png#pic_center" alt="在这里插入图片描述"></p>
+<h1 id="3-利用“选择并遮住”"><a href="#3-利用“选择并遮住”" class="headerlink" title="3. 利用“选择并遮住”"></a>3. 利用“选择并遮住”</h1><ol>
+<li><p>按住Ctrl键，点击人物层缩略图，为人物建立选区；</p>
+</li>
+<li><p>点击“选择”→“选择并遮住（调整边缘）”；</p>
+</li>
+<li><p>首先勾选“智能半径”、“净化颜色”，然后分别调整“半径值”、“移动边缘”、“羽化值”（净化颜色数量直接保持默认即可）三个选项，直到白边消失为止，同样也能很好地消除白边；<br><img src="https://img-blog.csdnimg.cn/20200327233129153.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+</li>
+</ol>
 
     </div>
 
@@ -253,13 +269,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/03/05/%E5%88%9D%E8%AF%86%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/" rel="prev" title="初识语义分割">
-      <i class="fa fa-chevron-left"></i> 初识语义分割
+    <a href="/2020/03/20/C++%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" rel="prev" title="C++基础入门">
+      <i class="fa fa-chevron-left"></i> C++基础入门
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/03/05/%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%90%86%E8%A7%A3/" rel="next" title="卷积的理解">
-      卷积的理解 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -319,7 +332,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#上采样、下采样"><span class="nav-number">1.</span> <span class="nav-text">上采样、下采样</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#缩小图像（或称为下采样（subsampled）或降采样（downsampled））"><span class="nav-number">1.1.</span> <span class="nav-text">缩小图像（或称为下采样（subsampled）或降采样（downsampled））</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#放大图像（或称为上采样（upsampling）或图像插值（interpolating））"><span class="nav-number">1.2.</span> <span class="nav-text">放大图像（或称为上采样（upsampling）或图像插值（interpolating））</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">1.3.</span> <span class="nav-text">原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#池化"><span class="nav-number">2.</span> <span class="nav-text">池化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#池化的作用"><span class="nav-number">2.1.</span> <span class="nav-text">池化的作用</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-选区缩像素"><span class="nav-number">1.</span> <span class="nav-text">1. 选区缩像素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-滤镜处理法"><span class="nav-number">2.</span> <span class="nav-text">2. 滤镜处理法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-利用“选择并遮住”"><span class="nav-number">3.</span> <span class="nav-text">3. 利用“选择并遮住”</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
