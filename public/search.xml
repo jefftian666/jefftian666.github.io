@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>PS 抠图三种方法</title>
+      <link href="/2020/03/28/PS%20%E6%8A%A0%E5%9B%BE%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/"/>
+      <url>/2020/03/28/PS%20%E6%8A%A0%E5%9B%BE%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h1 id="快速选择工具抠图"><a href="#快速选择工具抠图" class="headerlink" title="快速选择工具抠图"></a>快速选择工具抠图</h1><p>在精度要求不高的图像上面，这两个是非常快速的抠图方法。使用这两个输出选区时建议配合“调整边缘”，否则毛刺会比较严重。<br><img src="https://img-blog.csdnimg.cn/20200328190659138.png" alt="在这里插入图片描述"><br>调整边缘后，输出带蒙版的图层，利用</p><ul><li>Alt+Delete 给选区填充前景色</li><li>Ctrl+Delete 给选区填充背景色<br>给魔棒工具选区填充黑色或白色，可以进一步处理图片。</li></ul><h1 id="通道抠图"><a href="#通道抠图" class="headerlink" title="通道抠图"></a>通道抠图</h1><p>通道抠图适用于扣取边缘复杂的对象，如树枝、毛发等；还可以扣取半透明的对象，如烟、火、水等。本质是通过通道生成选区。</p><p>1、<code>ctrl+J</code>复制一层（这是好习惯哦）。</p><p>2、调出右下角工具栏里的“通道”，选择反差对比最明显的一种模颜色式，也就是说人像要着重抠的地方（头发）最深、背景最浅的模式。这张图片在红色通道下面对比最明显，所以我们就选择用绿色通道。拷贝绿色通道，得到“绿副本”。<br><img src="https://img-blog.csdnimg.cn/20200328180916146.png" alt="在这里插入图片描述"></p><p>3、点击左上方工具栏，通过 图像——调整——色阶 ，使用左侧滴管为目标设置黑场，为背景设置白场。目的是目标抠图为黑色，其余背景为白色。<br><img src="https://img-blog.csdnimg.cn/20200328180806931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>色阶调整结果：<br><img src="https://img-blog.csdnimg.cn/20200328181354265.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>4、使用画笔工具将背景中的黑色部分涂为白色。<code>[</code>为缩小画笔，<code>]</code>为放大画笔。按住<code>Alt+鼠标右键</code>上下拖动，可以更改画笔硬度。<br>5.Ctrl+鼠标单击人物缩略图，载入选区，然后Ctrl+shift+i反选。回到图层区，<code>Ctrl+J</code>复制图层（复制图层也可以用增加蒙版替代，蒙版可以用黑色和白色画笔调整）。头发部分抠图完成。<br><img src="https://img-blog.csdnimg.cn/2020032818262130.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>其余部分可以用钢笔完成。</p><h1 id="钢笔抠图"><a href="#钢笔抠图" class="headerlink" title="钢笔抠图"></a>钢笔抠图</h1><p>1.选择钢笔工具，勾勒大致轮廓。然后<code>Ctrl+Enter</code>生成选区。<code>Ctrl+J</code>复制图层。主要抠取通道抠图缺失的部分。<br><img src="https://img-blog.csdnimg.cn/20200328183035576.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.Ctrl+E合并通道和钢笔抠好的图。<br><img src="https://img-blog.csdnimg.cn/20200328183807871.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>抠图完成。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>PS 抠图去白边</title>
       <link href="/2020/03/27/PS%20%E6%8A%A0%E5%9B%BE%E5%8E%BB%E7%99%BD%E8%BE%B9/"/>
       <url>/2020/03/27/PS%20%E6%8A%A0%E5%9B%BE%E5%8E%BB%E7%99%BD%E8%BE%B9/</url>
