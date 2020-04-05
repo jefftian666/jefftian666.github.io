@@ -20,27 +20,24 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
   </script>
 
-  <meta name="description" content="快速选择工具抠图在精度要求不高的图像上面，这两个是非常快速的抠图方法。使用这两个输出选区时建议配合“调整边缘”，否则毛刺会比较严重。调整边缘后，输出带蒙版的图层，利用  Alt+Delete 给选区填充前景色 Ctrl+Delete 给选区填充背景色给魔棒工具选区填充黑色或白色，可以进一步处理图片。  通道抠图通道抠图适用于扣取边缘复杂的对象，如树枝、毛发等；还可以扣取半透明的对象，如烟、火、水等">
+  <meta name="description" content="1. 选区缩像素 按住Ctrl键，点击人物层缩略图，为人物建立选区；  点击“选择”→“修改”→“收缩”，将收缩量调整为“2像素”，将选区收缩2像素  按住Ctrl+Shift+I 反选选区，按下Delete键删除，就能完美地去除白边了。  按Ctrl+D取消选区。   2. 滤镜处理法 按住Ctrl键，点击人物层缩略图，为人物建立选区；  点击“图层”》“图层蒙版”》“显示选区”，为人物层添加">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PS 抠图三种方法">
-<meta property="og:url" content="http://yoursite.com/2020/03/28/PS%20%E6%8A%A0%E5%9B%BE%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:title" content="PS 抠图去白边">
+<meta property="og:url" content="http://yoursite.com/2020/04/05/PS%20%E6%8A%A0%E5%9B%BE%E5%8E%BB%E7%99%BD%E8%BE%B9/index.html">
 <meta property="og:site_name" content="求知若饥,虚心若愚。">
-<meta property="og:description" content="快速选择工具抠图在精度要求不高的图像上面，这两个是非常快速的抠图方法。使用这两个输出选区时建议配合“调整边缘”，否则毛刺会比较严重。调整边缘后，输出带蒙版的图层，利用  Alt+Delete 给选区填充前景色 Ctrl+Delete 给选区填充背景色给魔棒工具选区填充黑色或白色，可以进一步处理图片。  通道抠图通道抠图适用于扣取边缘复杂的对象，如树枝、毛发等；还可以扣取半透明的对象，如烟、火、水等">
+<meta property="og:description" content="1. 选区缩像素 按住Ctrl键，点击人物层缩略图，为人物建立选区；  点击“选择”→“修改”→“收缩”，将收缩量调整为“2像素”，将选区收缩2像素  按住Ctrl+Shift+I 反选选区，按下Delete键删除，就能完美地去除白边了。  按Ctrl+D取消选区。   2. 滤镜处理法 按住Ctrl键，点击人物层缩略图，为人物建立选区；  点击“图层”》“图层蒙版”》“显示选区”，为人物层添加">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200328190659138.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200328180916146.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200328180806931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200328181354265.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2020032818262130.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200328183035576.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200328183807871.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70">
-<meta property="article:published_time" content="2020-03-28T11:38:22.971Z">
-<meta property="article:modified_time" content="2020-03-28T11:38:30.108Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200405165933127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327232232530.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327233851769.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327233129153.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-04-05T08:59:52.484Z">
+<meta property="article:modified_time" content="2020-04-05T08:59:59.536Z">
 <meta property="article:author" content="Jeff Tian">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200328190659138.png">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200405165933127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70">
 
-<link rel="canonical" href="http://yoursite.com/2020/03/28/PS%20%E6%8A%A0%E5%9B%BE%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/">
+<link rel="canonical" href="http://yoursite.com/2020/04/05/PS%20%E6%8A%A0%E5%9B%BE%E5%8E%BB%E7%99%BD%E8%BE%B9/">
 
 
 <script id="page-configurations">
@@ -53,7 +50,7 @@
   };
 </script>
 
-  <title>PS 抠图三种方法 | 求知若饥,虚心若愚。</title>
+  <title>PS 抠图去白边 | 求知若饥,虚心若愚。</title>
   
 
 
@@ -188,7 +185,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/28/PS%20%E6%8A%A0%E5%9B%BE%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/05/PS%20%E6%8A%A0%E5%9B%BE%E5%8E%BB%E7%99%BD%E8%BE%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -201,7 +198,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          PS 抠图三种方法
+          PS 抠图去白边
         </h1>
 
         <div class="post-meta">
@@ -212,7 +209,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-28 19:38:22 / Modified: 19:38:30" itemprop="dateCreated datePublished" datetime="2020-03-28T19:38:22+08:00">2020-03-28</time>
+              <time title="Created: 2020-04-05 16:59:52 / Modified: 16:59:59" itemprop="dateCreated datePublished" datetime="2020-04-05T16:59:52+08:00">2020-04-05</time>
             </span>
 
           
@@ -233,16 +230,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="快速选择工具抠图"><a href="#快速选择工具抠图" class="headerlink" title="快速选择工具抠图"></a>快速选择工具抠图</h1><p>在精度要求不高的图像上面，这两个是非常快速的抠图方法。使用这两个输出选区时建议配合“调整边缘”，否则毛刺会比较严重。<br><img src="https://img-blog.csdnimg.cn/20200328190659138.png" alt="在这里插入图片描述"><br>调整边缘后，输出带蒙版的图层，利用</p>
-<ul>
-<li>Alt+Delete 给选区填充前景色</li>
-<li>Ctrl+Delete 给选区填充背景色<br>给魔棒工具选区填充黑色或白色，可以进一步处理图片。</li>
-</ul>
-<h1 id="通道抠图"><a href="#通道抠图" class="headerlink" title="通道抠图"></a>通道抠图</h1><p>通道抠图适用于扣取边缘复杂的对象，如树枝、毛发等；还可以扣取半透明的对象，如烟、火、水等。本质是通过通道生成选区。</p>
-<p>1、<code>ctrl+J</code>复制一层（这是好习惯哦）。</p>
-<p>2、调出右下角工具栏里的“通道”，选择反差对比最明显的一种模颜色式，也就是说人像要着重抠的地方（头发）最深、背景最浅的模式。这张图片在红色通道下面对比最明显，所以我们就选择用绿色通道。拷贝绿色通道，得到“绿副本”。<br><img src="https://img-blog.csdnimg.cn/20200328180916146.png" alt="在这里插入图片描述"></p>
-<p>3、点击左上方工具栏，通过 图像——调整——色阶 ，使用左侧滴管为目标设置黑场，为背景设置白场。目的是目标抠图为黑色，其余背景为白色。<br><img src="https://img-blog.csdnimg.cn/20200328180806931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>色阶调整结果：<br><img src="https://img-blog.csdnimg.cn/20200328181354265.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>4、使用画笔工具将背景中的黑色部分涂为白色。<code>[</code>为缩小画笔，<code>]</code>为放大画笔。按住<code>Alt+鼠标右键</code>上下拖动，可以更改画笔硬度。<br>5.Ctrl+鼠标单击人物缩略图，载入选区，然后Ctrl+shift+i反选。回到图层区，<code>Ctrl+J</code>复制图层（复制图层也可以用增加蒙版替代，蒙版可以用黑色和白色画笔调整）。头发部分抠图完成。<br><img src="https://img-blog.csdnimg.cn/2020032818262130.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>其余部分可以用钢笔完成。</p>
-<h1 id="钢笔抠图"><a href="#钢笔抠图" class="headerlink" title="钢笔抠图"></a>钢笔抠图</h1><p>1.选择钢笔工具，勾勒大致轮廓。然后<code>Ctrl+Enter</code>生成选区。<code>Ctrl+J</code>复制图层。主要抠取通道抠图缺失的部分。<br><img src="https://img-blog.csdnimg.cn/20200328183035576.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.Ctrl+E合并通道和钢笔抠好的图。<br><img src="https://img-blog.csdnimg.cn/20200328183807871.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>抠图完成。</p>
+        <p><img src="https://img-blog.csdnimg.cn/20200405165933127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="1-选区缩像素"><a href="#1-选区缩像素" class="headerlink" title="1. 选区缩像素"></a>1. 选区缩像素</h1><ol>
+<li><p>按住Ctrl键，点击人物层缩略图，为人物建立选区；</p>
+</li>
+<li><p>点击“选择”→“修改”→“收缩”，将收缩量调整为“2像素”，将选区收缩2像素</p>
+</li>
+<li><p>按住<code>Ctrl+Shift+I</code> 反选选区，按下Delete键删除，就能完美地去除白边了。</p>
+</li>
+<li><p>按<code>Ctrl+D</code>取消选区。</p>
+</li>
+</ol>
+<h1 id="2-滤镜处理法"><a href="#2-滤镜处理法" class="headerlink" title="2. 滤镜处理法"></a>2. 滤镜处理法</h1><ol>
+<li><p>按住Ctrl键，点击人物层缩略图，为人物建立选区；</p>
+</li>
+<li><p>点击“图层”》“图层蒙版”》“显示选区”，为人物层添加图层蒙版；</p>
+</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20200327232232530.png#pic_center" alt="在这里插入图片描述"><br>3. 点击“滤镜”→“其他”→“最小值”，根据画面效果调整“最小值”，将保留值修改为“圆度”，最后直到白边消失即可；<br>4. <img src="https://img-blog.csdnimg.cn/20200327233851769.png#pic_center" alt="在这里插入图片描述"></p>
+<h1 id="3-利用“选择并遮住”"><a href="#3-利用“选择并遮住”" class="headerlink" title="3. 利用“选择并遮住”"></a>3. 利用“选择并遮住”</h1><ol>
+<li><p>按住Ctrl键，点击人物层缩略图，为人物建立选区；</p>
+</li>
+<li><p>点击“选择”→“选择并遮住（调整边缘）”；</p>
+</li>
+<li><p>首先勾选“智能半径”、“净化颜色”，然后分别调整“半径值”、“移动边缘”、“羽化值”（净化颜色数量直接保持默认即可）三个选项，直到白边消失为止，同样也能很好地消除白边；<br><img src="https://img-blog.csdnimg.cn/20200327233129153.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW53ZW5ibzY2NjY=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+</li>
+</ol>
 
     </div>
 
@@ -258,12 +271,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/03/27/PS%20%E6%8A%A0%E5%9B%BE%E5%8E%BB%E7%99%BD%E8%BE%B9/" rel="prev" title="PS 抠图去白边">
-      <i class="fa fa-chevron-left"></i> PS 抠图去白边
+    <a href="/2020/04/05/PS%20%E6%8A%A0%E4%BA%BA%E5%83%8F%E6%96%B9%E6%B3%95/" rel="prev" title="PS 抠人像方法">
+      <i class="fa fa-chevron-left"></i> PS 抠人像方法
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/04/04/%E8%A7%86%E8%A7%89slam%E5%8D%81%E5%9B%9B%E8%AE%B2%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89%E4%BB%A3%E7%A0%81%E5%AD%A6%E4%B9%A0(ch%EF%BC%92_5)/" rel="next" title="视觉slam十四讲（第二版）代码学习(ch２_5)">
-      视觉slam十四讲（第二版）代码学习(ch２_5) <i class="fa fa-chevron-right"></i>
+    <a href="/2020/04/05/Git%E5%91%BD%E4%BB%A4%E4%B8%80%E8%A7%88/" rel="next" title="Git命令一览">
+      Git命令一览 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -324,7 +337,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#快速选择工具抠图"><span class="nav-number">1.</span> <span class="nav-text">快速选择工具抠图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通道抠图"><span class="nav-number">2.</span> <span class="nav-text">通道抠图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#钢笔抠图"><span class="nav-number">3.</span> <span class="nav-text">钢笔抠图</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-选区缩像素"><span class="nav-number">1.</span> <span class="nav-text">1. 选区缩像素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-滤镜处理法"><span class="nav-number">2.</span> <span class="nav-text">2. 滤镜处理法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-利用“选择并遮住”"><span class="nav-number">3.</span> <span class="nav-text">3. 利用“选择并遮住”</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
